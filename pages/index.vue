@@ -1,22 +1,20 @@
 <template>
-    <div class="Layout">
-        Custom layout defined with <code>definePageMeta</code>
-
-        <NuxtLink to="/">
-            Back to home
-        </NuxtLink>
-    </div>
+  <div class="Layout">
+    Custom layout defined with <code>definePageMeta</code>
+    <NuxtLink to="/">
+      Back to home
+    </NuxtLink>
+  </div>
 </template>
 
 <script>
 definePageMeta({
-    layout: 'default'
-})
+  layout: "default",
+});
 </script>
 
 <style lang="scss">
 .Layout {
-    background-color: transparent;
+  background-color: transparent;
 }
 </style>
-
