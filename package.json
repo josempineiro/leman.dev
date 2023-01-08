@@ -10,5 +10,10 @@
   "devDependencies": {
     "nuxt": "3.0.0",
     "nuxt-icon": "^0.1.8"
+  },
+  "dependencies": {
+    "nuxt-purgecss": "^2.0.0",
+    "sass": "^1.57.1",
+    "sass-loader": "^13.2.0"
   }
 }

@@ -1,5 +1,5 @@
 <template>
-    <div class="p-4">
+    <div class="Layout">
         Custom layout defined with <code>definePageMeta</code>
 
         <NuxtLink to="/">
@@ -13,3 +13,10 @@ definePageMeta({
     layout: 'default'
 })
 </script>
+
+<style lang="scss">
+.Layout {
+    background-color: transparent;
+}
+</style>
+
