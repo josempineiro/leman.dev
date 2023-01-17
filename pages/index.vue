@@ -1,20 +1,34 @@
 <template>
-  <div class="Layout">
-    Custom layout defined with <code>definePageMeta</code>
-    <NuxtLink to="/">
-      Back to home
-    </NuxtLink>
-  </div>
+  <Strip :items="items">
+    <Avatar />
+  </Strip>
 </template>
 
-<script>
-definePageMeta({
-  layout: "default",
-});
-</script>
+<script setup>
 
-<style lang="scss">
-.Layout {
-  background-color: transparent;
-}
-</style>
+
+const items = [
+  {
+    id: 1,
+    to: "/aboutme",
+    media: "👋🏼",
+    title: "Hello! I am",
+    description: "Jose Piñeiro, aka Leman.",
+  },
+  {
+    id: 2,
+    to: "/developer",
+    media: "👨🏻‍💻",
+    title: "I'm a front end developer.",
+    description: "Currently working at YepCode",
+  },
+  {
+    id: 3,
+    to: "/aboutme",
+    media: "📫",
+    title: "Contact me",
+    description: "at email",
+  },
+];
+
+</script>

@@ -7,7 +7,7 @@ module.exports = {
   extends: [
     "plugin:@typescript-eslint/recommended",
     "plugin:nuxt/recommended",
-    "plugin:vue/vue3-recommended",
+    "plugin:vue/vue3-strongly-recommended",
   ],
   parserOptions: {
     ecmaVersion: "latest",
