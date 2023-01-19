@@ -1,15 +1,10 @@
 <template>
-  <h2 class="Logo">leman.dev</h2>
+  <h2 class="AppLogo">leman.dev</h2>
 </template>
 <script>
-export default {
-
-}
+export default {};
 </script>
 <style lang="scss">
-.Logo {
-  font-size: 24px;
-  font-weight: 700;
-  color: #192b55;
+.AppLogo {
 }
 </style>

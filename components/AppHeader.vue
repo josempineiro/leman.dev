@@ -2,7 +2,7 @@
   <div ref="header" class="HeaderWrapper" id="asdfasdfasdf">
     <header :class="classes">
       <NuxtLink to="/">
-        <app-logo />
+        <AppLogo />
       </NuxtLink>
     </header>
   </div>
@@ -49,6 +49,11 @@ onMounted(() => {
 
     &_sticky {
       background-color: #025b62;
+    }
+    .AppLogo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #192b55;
     }
   }
 }
