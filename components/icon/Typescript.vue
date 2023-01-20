@@ -1,8 +1,7 @@
 <template>
   <svg
-    class="Typescript"
     xmlns="http://www.w3.org/2000/svg"
-    id="Layer_1"
+    class="Typescript"
     viewBox="0 0 400 400"
   >
     <path class="st0" d="M0 200V0h400v400H0" />
@@ -14,6 +13,8 @@
 </template>
 <style lang="scss">
 .Typescript {
+  width: 24px;
+  height: 24px;
   .st0 {
     fill: #007acc;
   }
