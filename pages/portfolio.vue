@@ -57,11 +57,10 @@ const projects = ref(
           "react",
           "typescript",
           "materialui",
-          "vercel",
           "github",
+          "vercel",
         ],
       },
-      ,
       {
         id: "secretsanta",
         description:
@@ -74,8 +73,8 @@ const projects = ref(
           "react",
           "typescript",
           "materialui",
-          "vercel",
           "github",
+          "vercel",
         ],
       },
     ],
@@ -109,6 +108,14 @@ const selectedProject = computed(
   object-fit: cover;
   &.rounded {
     border-radius: 50%;
+  }
+}
+@media (max-width: 768px) {
+  .ProjectsSlider {
+    flex-direction: column;
+  }
+  .SelectedProject {
+    padding: 15%;
   }
 }
 </style>

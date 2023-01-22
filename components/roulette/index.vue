@@ -11,6 +11,7 @@
     </div>
     <TransitionGroup
       name="list"
+      appear
       tag="ul"
       :class="{
         items: true,
@@ -21,6 +22,8 @@
       @enter="onEnter"
       @leave="onLeave"
       @after-enter="onAfterEnter"
+      @appear="onEnter"
+      @before-appear="onBeforeEnter"
     >
       <li
         v-for="(item, index) in items"
@@ -76,13 +79,18 @@ const itemPositions = computed(() => {
 
 const itemStyles = computed(() => {
   return props.items.map((_, index) => {
+    console.log({
+      x: itemPositions.value[index].x,
+      y: itemPositions.value[index].y,
+    });
+
     return {
       width: `${props.itemWidth}px`,
       height: `${props.itemHeight}px`,
       transform: `translate3d(
         calc(-50% + ${props.radius}px + ${itemPositions.value[index].x}px),
         calc(-50% + ${props.radius}px + ${itemPositions.value[index].y}px),
-        0
+        0px
       )`,
     };
   });
@@ -98,10 +106,11 @@ function onEnter(el, done) {
     opacity: 1,
     scaleX: 1,
     scaleY: 1,
-    x: props.radius + props.radius * Math.cos(angle) - props.itemWidth,
-    y: props.radius + props.radius * Math.sin(angle) - props.itemHeight,
+    x: props.radius + props.radius * Math.cos(angle) - props.itemWidth / 2,
+    y: props.radius + props.radius * Math.sin(angle) - props.itemHeight / 2,
   });
 }
+
 function onLeave(el, done) {
   const angle = el.dataset.angle;
   const index = el.dataset.index;
@@ -111,17 +120,18 @@ function onLeave(el, done) {
     opacity: 0,
     scaleX: 0.5,
     scaleY: 0.5,
-    x: props.radius + props.radius * 2 * Math.cos(angle) - props.itemWidth,
-    y: props.radius + props.radius * 2 * Math.sin(angle) - props.itemHeight,
+    x: props.radius + props.radius * 2 * Math.cos(angle) - props.itemWidth / 2,
+    y: props.radius + props.radius * 2 * Math.sin(angle) - props.itemHeight / 2,
   });
 }
+
 function onBeforeEnter(el) {
   gsap.set(el, {
     scaleX: 0.25,
     scaleY: 0.25,
     opacity: 0,
-    x: props.radius - props.itemWidth,
-    y: props.radius - props.itemHeight,
+    x: props.radius - props.itemWidth / 2,
+    y: props.radius - props.itemHeight / 2,
   });
 }
 function onAfterEnter(el) {

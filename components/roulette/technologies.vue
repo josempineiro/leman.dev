@@ -1,5 +1,11 @@
 <template>
-  <Roulette :items="visibleTechnologies" :rotate="false">
+  <Roulette
+    :radius="isMobile ? 150 : 200"
+    :item-width="isMobile ? 35 : 50"
+    :item-height="isMobile ? 35 : 50"
+    :items="visibleTechnologies"
+    :rotate="false"
+  >
     <template #default>
       <slot />
     </template>
@@ -149,6 +155,8 @@ const visibleTechnologies = computed(() =>
     .map((id) => technologies.value.find((technology) => technology.id === id))
     .filter(Boolean)
 );
+
+const { isMobile } = useDevice();
 </script>
 <style lang="scss">
 .Tech {

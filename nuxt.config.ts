@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     "~/assets/css/main.scss",
     "~/assets/css/fonts.css",
   ],
-  modules: ["nuxt-icon", "nuxt-purgecss"],
+  modules: ["nuxt-icon", "nuxt-purgecss", "@nuxtjs/device"],
   vite: {
     plugins: [eslintPlugin()],
   },
