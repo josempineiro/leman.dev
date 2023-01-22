@@ -6,9 +6,6 @@
       height: `${radius * 2}px`,
     }"
   >
-    <div class="center-item">
-      <slot />
-    </div>
     <TransitionGroup
       name="list"
       appear
@@ -24,6 +21,8 @@
       @after-enter="onAfterEnter"
       @appear="onEnter"
       @before-appear="onBeforeEnter"
+      @appear-cancelled="onLeave"
+      @enter-cancelled="onLeave"
     >
       <li
         v-for="(item, index) in items"
@@ -37,6 +36,9 @@
         <slot name="item" :item="item" />
       </li>
     </TransitionGroup>
+    <div class="center-item">
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -113,9 +115,7 @@ function onEnter(el, done) {
 
 function onLeave(el, done) {
   const angle = el.dataset.angle;
-  const index = el.dataset.index;
   gsap.to(el, {
-    delay: index * 0.2,
     onComplete: done,
     opacity: 0,
     scaleX: 0.5,

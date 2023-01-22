@@ -1,6 +1,6 @@
 <template>
   <Roulette
-    :radius="isMobile ? 150 : 200"
+    :radius="isMobile ? 160 : 200"
     :item-width="isMobile ? 35 : 50"
     :item-height="isMobile ? 35 : 50"
     :items="visibleTechnologies"

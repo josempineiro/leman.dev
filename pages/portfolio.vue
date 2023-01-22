@@ -5,15 +5,7 @@
     </button>
     <RouletteTechnologies :filter="selectedProject.technologies">
       <div class="SelectedProject">
-        <img
-          :style="{ width: '100%', height: '100%' }"
-          :src="selectedProject.previewUrl"
-          :class="{
-            SelectedProject__preview: true,
-            [selectedProject.class]: Boolean(selectedProject.class),
-          }"
-          :alt="selectedProject.id"
-        />
+        <ProjectCard :project="selectedProject" />
       </div>
     </RouletteTechnologies>
     <button
@@ -38,6 +30,7 @@ const projects = ref(
     [
       {
         id: "pokedex",
+        title: "Pokedex",
         description:
           "This is my Pokedex concept built with Nuxt3 and Free PokeAPI.",
         href: "https://pokedex.leman.dev",
@@ -47,6 +40,7 @@ const projects = ref(
       },
       {
         id: "promilsim",
+        title: "Promilsim",
         description:
           "PROMILSIM is a web application that simulates the effects of alcohol on the human body.",
         href: "https://promilsim.com/",
@@ -63,6 +57,7 @@ const projects = ref(
       },
       {
         id: "secretsanta",
+        title: "Secret Santa",
         description:
           "Invite your friends or family to join and exchange gifts.",
         href: "https://secretsanta.leman.dev/",
@@ -72,7 +67,26 @@ const projects = ref(
           "next",
           "react",
           "typescript",
-          "materialui",
+          "tailwind",
+          "github",
+          "vercel",
+        ],
+      },
+      {
+        id: "rick-and-morty",
+        title: "Rick and Morty",
+        description:
+          "This is my Rick and Morty concept built with Next and Free Rick and Morty API.",
+        href: "https://secretsanta.leman.dev/",
+        previewUrl: secretsanta,
+        class: "rounded",
+        technologies: [
+          "next",
+          "react",
+          "typescript",
+          "tailwind",
+          "apollographql",
+          "graphql",
           "github",
           "vercel",
         ],
@@ -92,7 +106,7 @@ const selectedProject = computed(
 .SelectedProject {
   width: 100%;
   height: 100%;
-  padding: 25%;
+  padding: 10%;
   box-sizing: border-box;
 }
 .ProjectsSlider {
