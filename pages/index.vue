@@ -5,8 +5,6 @@
 </template>
 
 <script setup>
-
-
 const items = [
   {
     id: 1,
@@ -24,11 +22,16 @@ const items = [
   },
   {
     id: 3,
+    to: "/portfolio",
+    media: "📫",
+    title: "Portfolio",
+  },
+  {
+    id: 3,
     to: "/aboutme",
     media: "📫",
     title: "Contact me",
     description: "at email",
   },
 ];
-
 </script>
