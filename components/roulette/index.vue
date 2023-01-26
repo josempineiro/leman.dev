@@ -188,7 +188,6 @@ function onAfterEnter(el) {
     }
     .item {
       position: absolute;
-      border-radius: 50%;
       transition: 0.2s all ease;
       transform: translate3d(
         var(--translate-x),
