@@ -1,5 +1,5 @@
 <template>
-  <div class="ProjectCard">
+  <div :class="classes">
     <div class="ProjectCardPreview">
       <img :src="project.previewUrl" :alt="project.title" />
     </div>
@@ -17,6 +17,7 @@ interface Project {
   title: string;
   description: string;
   previewUrl: string;
+  variant: "default" | "circular";
   href: string;
   technologies: string[];
 }
@@ -30,6 +31,7 @@ const props = withDefaults(defineProps<ProjectCardProps>(), {
     id: "asdf",
     title: "asdf",
     description: "asdf",
+    variant: "circular",
     previewUrl: "asdf",
     href: "asdf",
     technologies: [],
@@ -38,6 +40,13 @@ const props = withDefaults(defineProps<ProjectCardProps>(), {
 });
 
 console.log(props);
+
+const classes = computed(() => {
+  return {
+    ProjectCard: true,
+    [`ProjectCard_${props.variant}`]: true,
+  };
+});
 </script>
 
 <style lang="scss">
@@ -49,10 +58,12 @@ console.log(props);
   gap: 8px;
   width: 100%;
   height: 100%;
-  padding: 1rem;
+  padding: 10%;
   background-color: var(--color-background);
   box-shadow: 0 0 0.5rem 0.25rem var(--color-background);
-
+  &_circular {
+    border-radius: 50%;
+  }
   &Preview {
     width: 100%;
     height: 100%;

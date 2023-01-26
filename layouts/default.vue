@@ -7,7 +7,7 @@
     </div>
   </div>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 .Layout {
   background-color: white;
   height: 100vh;
@@ -16,7 +16,7 @@
   overflow-x: hidden;
   overflow-y: auto;
 
-  >.Content {
+  .Content {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -27,4 +27,3 @@
   }
 }
 </style>
-

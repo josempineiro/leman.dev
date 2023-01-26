@@ -1,6 +1,6 @@
 <template>
   <div
-    class="circle-item-container"
+    class="Roulette"
     :style="{
       width: `${radius * 2}px`,
       height: `${radius * 2}px`,
@@ -19,7 +19,7 @@
       @enter="onEnter"
       @leave="onLeave"
       @after-enter="onAfterEnter"
-      @appear="onEnter"
+      @appear="onAppear"
       @before-appear="onBeforeEnter"
       @appear-cancelled="onLeave"
       @enter-cancelled="onLeave"
@@ -30,7 +30,7 @@
         :id="item.id"
         :style="itemStyles[index]"
         :data-index="index"
-        :data-angle="(index * (2 * Math.PI)) / props.items.length"
+        :data-angle="(index * (2 * Math.PI)) / items.length"
         :key="item.id"
       >
         <slot name="item" :item="item" />
@@ -58,42 +58,31 @@ const props = defineProps({
     type: Number,
     default: 200,
   },
-  itemWidth: {
-    type: Number,
-    default: 50,
-  },
-  itemHeight: {
+  itemRadius: {
     type: Number,
     default: 50,
   },
 });
 
-const itemPositions = computed(() => {
-  const angle = (2 * Math.PI) / props.items.length;
-  return props.items.map((_, index) => {
-    const currentAngle = index * angle;
-    return {
-      x: props.radius * Math.cos(currentAngle),
-      y: props.radius * Math.sin(currentAngle),
-    };
-  });
+const itemOffsetX = computed(() => {
+  return props.itemRadius + props.radius;
 });
 
 const itemStyles = computed(() => {
   return props.items.map((_, index) => {
-    console.log({
-      x: itemPositions.value[index].x,
-      y: itemPositions.value[index].y,
-    });
-
+    const angle = index * ((2 * Math.PI) / props.items.length);
     return {
-      width: `${props.itemWidth}px`,
-      height: `${props.itemHeight}px`,
-      transform: `translate3d(
-        calc(-50% + ${props.radius}px + ${itemPositions.value[index].x}px),
-        calc(-50% + ${props.radius}px + ${itemPositions.value[index].y}px),
-        0px
-      )`,
+      width: `${props.itemRadius}px`,
+      height: `${props.itemRadius}px`,
+      transform: `translate3d(${
+        props.radius -
+        props.itemRadius / 2 +
+        itemOffsetX.value * Math.cos(angle)
+      }px,${
+        props.radius -
+        props.itemRadius / 2 +
+        itemOffsetX.value * Math.sin(angle)
+      }px,0)`,
     };
   });
 });
@@ -103,25 +92,47 @@ function onEnter(el, done) {
   const index = el.dataset.index;
   console.log(el.id);
   gsap.to(el, {
-    delay: index * 0.2,
+    duration: 0.2,
+    delay: index * 0.1,
     onComplete: done,
     opacity: 1,
     scaleX: 1,
     scaleY: 1,
-    x: props.radius + props.radius * Math.cos(angle) - props.itemWidth / 2,
-    y: props.radius + props.radius * Math.sin(angle) - props.itemHeight / 2,
+    x:
+      props.radius + itemOffsetX.value * Math.cos(angle) - props.itemRadius / 2,
+    y:
+      props.radius + itemOffsetX.value * Math.sin(angle) - props.itemRadius / 2,
+  });
+}
+
+function onAppear(el, done) {
+  const angle = el.dataset.angle;
+  const index = el.dataset.index;
+  console.log(el.id);
+  gsap.to(el, {
+    duration: 0.2,
+    delay: index * 0.1,
+    onComplete: done,
+    opacity: 1,
+    scaleX: 1,
+    scaleY: 1,
+    x:
+      props.radius + itemOffsetX.value * Math.cos(angle) - props.itemRadius / 2,
+    y:
+      props.radius + itemOffsetX.value * Math.sin(angle) - props.itemRadius / 2,
   });
 }
 
 function onLeave(el, done) {
   const angle = el.dataset.angle;
   gsap.to(el, {
+    duration: 0.2,
     onComplete: done,
     opacity: 0,
     scaleX: 0.5,
     scaleY: 0.5,
-    x: props.radius + props.radius * 2 * Math.cos(angle) - props.itemWidth / 2,
-    y: props.radius + props.radius * 2 * Math.sin(angle) - props.itemHeight / 2,
+    x: props.radius - props.itemRadius / 2,
+    y: props.radius - props.itemRadius / 2,
   });
 }
 
@@ -130,18 +141,21 @@ function onBeforeEnter(el) {
     scaleX: 0.25,
     scaleY: 0.25,
     opacity: 0,
-    x: props.radius - props.itemWidth / 2,
-    y: props.radius - props.itemHeight / 2,
+    x: props.radius - props.itemRadius / 2,
+    y: props.radius - props.itemRadius / 2,
   });
 }
 function onAfterEnter(el) {
-  console.log("after enter");
-  console.log(el.id);
+  gsap.set(el, {
+    opacity: 1,
+    scaleX: 1,
+    scaleY: 1,
+  });
 }
 </script>
 
 <style lang="scss">
-.circle-item-container {
+.Roulette {
   position: relative;
 
   .center-item {
@@ -151,8 +165,6 @@ function onAfterEnter(el) {
     width: 100%;
     height: 100%;
     transform: translate(-50%, -50%);
-    border-radius: 50%;
-    overflow: hidden;
   }
 
   .items {
@@ -177,7 +189,7 @@ function onAfterEnter(el) {
     .item {
       position: absolute;
       border-radius: 50%;
-      transition: 2.6s all ease;
+      transition: 0.2s all ease;
       transform: translate3d(
         var(--translate-x),
         var(--translate-y),

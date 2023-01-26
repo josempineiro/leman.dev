@@ -1,23 +1,29 @@
 <template>
   <div class="ProjectsSlider">
-    <button @click="currentProjectIndex = Math.max(0, currentProjectIndex - 1)">
-      PREV
-    </button>
     <RouletteTechnologies :filter="selectedProject.technologies">
-      <div class="SelectedProject">
-        <ProjectCard :project="selectedProject" />
-      </div>
+      <ProjectCard
+        :project="selectedProject"
+        variant="circular"
+        :style="selectedProject.style"
+      />
     </RouletteTechnologies>
-    <button
-      @click="
-        currentProjectIndex = Math.min(
-          projects.length - 1,
-          currentProjectIndex + 1
-        )
-      "
-    >
-      NEXT
-    </button>
+    <FlexBox direction="row" justify="space-evenly" w="full">
+      <button
+        @click="currentProjectIndex = Math.max(0, currentProjectIndex - 1)"
+      >
+        PREV
+      </button>
+      <button
+        @click="
+          currentProjectIndex = Math.min(
+            projects.length - 1,
+            currentProjectIndex + 1
+          )
+        "
+      >
+        NEXT
+      </button>
+    </FlexBox>
   </div>
 </template>
 
@@ -77,8 +83,9 @@ const projects = ref(
         title: "Rick and Morty",
         description:
           "This is my Rick and Morty concept built with Next and Free Rick and Morty API.",
-        href: "https://secretsanta.leman.dev/",
-        previewUrl: secretsanta,
+        href: "https://rick-and-morty.leman.dev",
+        previewUrl:
+          "https://rick-and-morty.leman.dev/icons/apple-touch-icon.png",
         class: "rounded",
         technologies: [
           "next",
@@ -87,6 +94,28 @@ const projects = ref(
           "tailwind",
           "apollographql",
           "graphql",
+          "github",
+          "vercel",
+        ],
+      },
+      {
+        id: "minecraft-ui",
+        title: "Micreaft UI",
+        description:
+          "The Minecraft UI which Mojand Studios wishes to had and haven't.",
+        href: "https://minecraft-ui.leman.dev/",
+        previewUrl: "https://minecraft-ui.leman.dev/images/brand.png",
+        class: "rounded",
+        style: {
+          background: "rgb(35, 35, 42)",
+          color: "white",
+        },
+        technologies: [
+          "react",
+          "typescript",
+          "css",
+          "rollup",
+          "storybook",
           "github",
           "vercel",
         ],
@@ -106,8 +135,12 @@ const selectedProject = computed(
 .SelectedProject {
   width: 100%;
   height: 100%;
-  padding: 10%;
   box-sizing: border-box;
+  background-color: white;
+  border: 1px solid #eaeaea;
+
+  border-radius: 50%;
+  overflow: hidden;
 }
 .ProjectsSlider {
   width: 100%;

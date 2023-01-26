@@ -22,6 +22,7 @@ const props = defineProps({
         "flex-end",
         "space-between",
         "space-around",
+        "space-evenly",
       ].includes(value);
     },
   },
@@ -43,12 +44,27 @@ const props = defineProps({
     type: String,
     default: "auto",
     validator: (value: string) => {
-      return ["auto", "100%", "1"].includes(value) || value.includes("px") || value.includes("%") || value.includes("rem") || value.includes("em") || value.includes("vh") || value.includes("vw");
+      return (
+        ["auto", "100%", "1"].includes(value) ||
+        value.includes("px") ||
+        value.includes("%") ||
+        value.includes("rem") ||
+        value.includes("em") ||
+        value.includes("vh") ||
+        value.includes("vw")
+      );
     },
   },
   grow: {
     type: Number,
     default: 0,
+  },
+  w: {
+    type: String,
+    default: "auto",
+    validator: (value: string) => {
+      return ["auto", "full"].includes(value);
+    },
   },
 });
 const classes = computed(() => {
@@ -59,6 +75,7 @@ const classes = computed(() => {
     `FlexBox_align_${props.align}`,
     `FlexBox_wrap_${props.wrap}`,
     `FlexBox_basis_${props.basis}`,
+    `FlexBox_${props.w}`,
   ];
 });
 </script>
@@ -66,9 +83,17 @@ const classes = computed(() => {
 .FlexBox {
   display: flex;
 
+  &.FlexBox_direction_row {
+    flex-direction: row;
+    .FlexBox_full {
+      width: 100%;
+    }
+  }
   &.FlexBox_direction_column {
     flex-direction: column;
-    width: 100%;
+    .FlexBox_full {
+      height: 100%;
+    }
   }
 
   &.FlexBox_justify_center {
@@ -85,6 +110,10 @@ const classes = computed(() => {
 
   &.FlexBox_justify_space-around {
     justify-content: space-around;
+  }
+
+  &.FlexBox_justify_space-evenly {
+    justify-content: space-evenly;
   }
 
   &.FlexBox_align_center {
@@ -121,6 +150,10 @@ const classes = computed(() => {
 
   &.FlexBox_grow_0 {
     flex-grow: 0;
+  }
+
+  &.FlexBox_full {
+    width: 100%;
   }
 }
 </style>
