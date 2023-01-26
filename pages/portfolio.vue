@@ -7,22 +7,25 @@
         :style="selectedProject.style"
       />
     </RouletteTechnologies>
-    <FlexBox direction="row" justify="space-evenly" w="full">
-      <button
-        @click="currentProjectIndex = Math.max(0, currentProjectIndex - 1)"
+    <FlexBox class="Buttons" direction="row" justify="space-between" w="full">
+      <Button
+        @click="prevProject"
+        class="NavButton"
+        variant="text"
+        color="secondary"
+        :disabled="currentProjectIndex === 0"
       >
-        PREV
-      </button>
-      <button
-        @click="
-          currentProjectIndex = Math.min(
-            projects.length - 1,
-            currentProjectIndex + 1
-          )
-        "
+        <IconChevron variant="left" />
+      </Button>
+      <Button
+        @click="nextProject"
+        class="NavButton"
+        variant="text"
+        color="secondary"
+        :disabled="currentProjectIndex === projects.length - 1"
       >
-        NEXT
-      </button>
+        <IconChevron variant="right" />
+      </Button>
     </FlexBox>
   </div>
 </template>
@@ -127,6 +130,17 @@ const projects = ref(
 
 const currentProjectIndex = ref(0);
 
+function nextProject() {
+  currentProjectIndex.value = Math.min(
+    projects.value.length - 1,
+    currentProjectIndex.value + 1
+  );
+}
+
+function prevProject() {
+  currentProjectIndex.value = Math.max(0, currentProjectIndex.value - 1);
+}
+
 const selectedProject = computed(
   () => projects.value[currentProjectIndex.value]
 );
@@ -157,12 +171,27 @@ const selectedProject = computed(
     border-radius: 50%;
   }
 }
+
+.Buttons {
+  position: absolute;
+  padding: 32px;
+  max-width: 900px;
+}
+
+.NavButton .Chevron {
+  width: 48px;
+  height: 48px;
+}
+
 @media (max-width: 768px) {
   .ProjectsSlider {
     flex-direction: column;
   }
   .SelectedProject {
     padding: 15%;
+  }
+  .Buttons {
+    bottom: 0;
   }
 }
 </style>

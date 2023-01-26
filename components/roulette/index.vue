@@ -10,10 +10,7 @@
       name="list"
       appear
       tag="ul"
-      :class="{
-        items: true,
-        rotate: rotate,
-      }"
+      class="RouletteItems"
       :css="false"
       @before-enter="onBeforeEnter"
       @enter="onEnter"
@@ -26,7 +23,7 @@
     >
       <li
         v-for="(item, index) in items"
-        class="item"
+        class="RouletteItem"
         :id="item.id"
         :style="itemStyles[index]"
         :data-index="index"
@@ -36,7 +33,7 @@
         <slot name="item" :item="item" />
       </li>
     </TransitionGroup>
-    <div class="center-item">
+    <div class="RouletteContent">
       <slot />
     </div>
   </div>
@@ -158,7 +155,7 @@ function onAfterEnter(el) {
 .Roulette {
   position: relative;
 
-  .center-item {
+  &Content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -167,34 +164,21 @@ function onAfterEnter(el) {
     transform: translate(-50%, -50%);
   }
 
-  .items {
+  &Items {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-
-    &.rotate {
-      animation: rotate 60s linear infinite;
-      .item {
-        animation: angle 60s linear infinite;
-      }
-      &:hover {
-        animation-play-state: paused;
-        .item {
-          animation-play-state: paused;
-        }
-      }
-    }
-    .item {
-      position: absolute;
-      transition: 0.2s all ease;
-      transform: translate3d(
-        var(--translate-x),
-        var(--translate-y),
-        var(--translate-z)
-      );
-    }
+  }
+  &Item {
+    position: absolute;
+    transition: 0.2s all ease;
+    transform: translate3d(
+      var(--translate-x),
+      var(--translate-y),
+      var(--translate-z)
+    );
   }
 }
 

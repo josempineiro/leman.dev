@@ -5,9 +5,13 @@
     </div>
     <div class="ProjectCardTitle">{{ project.title }}</div>
     <div class="ProjectCardDescription">{{ project.description }}</div>
-    <div class="ProjectCardAction">
-      <NuxtLink :to="project.href" class="ProjectCardLink">OPEN</NuxtLink>
-    </div>
+    <Button
+      variant="outline"
+      color="secondary"
+      :href="project.href"
+      class="ProjectCardAction"
+      >OPEN</Button
+    >
   </div>
 </template>
 
@@ -91,17 +95,6 @@ const classes = computed(() => {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 2rem;
-    border-radius: 0.5rem;
-    background-color: var(--color-primary);
-    color: var(--color-background);
-    cursor: pointer;
-    transition: background-color 0.25s ease;
-
-    &:hover {
-      background-color: var(--color-primary-dark);
-    }
   }
   &Link {
     border-width: 1px;

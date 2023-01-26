@@ -7,7 +7,6 @@
 </template>
 <style lang="scss">
 @for $i from 1 through 10 {
-
   .page-enter-active a:nth-child(#{$i}n),
   .page-leave-active a:nth-child(#{$i}n) {
     transition-delay: #{$i * 0.1}s;
