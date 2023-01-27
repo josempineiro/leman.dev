@@ -4,6 +4,7 @@
       <ProjectCard
         :project="selectedProject"
         variant="circular"
+        :class="selectedProject.class"
         :style="selectedProject.style"
       />
     </RouletteTechnologies>
@@ -32,29 +33,37 @@
 
 <script setup>
 import _ from "lodash";
-import secretsanta from "~/assets/secret-santa-preview.png";
+import secretSantaLogo from "~/assets/secret-santa-logo.png";
+import secretSantaBrand from "~/assets/secret-santa-brand.png";
+import pokedexTitleImage from "~/assets/pokedex.png";
 
 const projects = ref(
   _.sortBy(
     [
       {
         id: "pokedex",
-        title: "Pokedex",
-        description:
-          "This is my Pokedex concept built with Nuxt3 and Free PokeAPI.",
+        description: "Pokedex concept for PokeAPI.",
         href: "https://pokedex.leman.dev",
-        previewUrl:
+        style: {
+          color: "#fddf00",
+          background: "#295ebb",
+        },
+        brandUrl: pokedexTitleImage,
+        logoUrl:
           "https://raw.githubusercontent.com/josempineiro/pokedex/main/public/icons/Pokedex.svg",
         technologies: ["nuxt", "vue", "javascript", "sass", "github", "vercel"],
       },
       {
         id: "promilsim",
         title: "Promilsim",
-        description:
-          "PROMILSIM is a web application that simulates the effects of alcohol on the human body.",
-        href: "https://promilsim.com/",
-        previewUrl: "https://promilsim.com/images/airsoft-2.jpg",
-        class: "rounded",
+        description: "Find airsoft teams, matches and more!",
+        href: "https://promilsim.com/app",
+        logoUrl: "https://promilsim.com/images/airsoft-2.jpg",
+        class: "logo-rounded",
+        style: {
+          background: "#2d2d2d",
+          color: "#ffffff",
+        },
         technologies: [
           "next",
           "react",
@@ -66,11 +75,11 @@ const projects = ref(
       },
       {
         id: "secretsanta",
-        title: "Secret Santa",
         description:
           "Invite your friends or family to join and exchange gifts.",
         href: "https://secretsanta.leman.dev/",
-        previewUrl: secretsanta,
+        logoUrl: secretSantaLogo,
+        brandUrl: secretSantaBrand,
         class: "rounded",
         technologies: [
           "next",
@@ -83,13 +92,15 @@ const projects = ref(
       },
       {
         id: "rick-and-morty",
-        title: "Rick and Morty",
-        description:
-          "This is my Rick and Morty concept built with Next and Free Rick and Morty API.",
-        href: "https://rick-and-morty.leman.dev",
-        previewUrl:
-          "https://rick-and-morty.leman.dev/icons/apple-touch-icon.png",
-        class: "rounded",
+        description: "Memorize game using Rick and Morty API.",
+        href: "https://rick-and-morty.leman.dev/game",
+        logoUrl: "https://rick-and-morty.leman.dev/icons/apple-touch-icon.png",
+        brandUrl: "https://rick-and-morty.leman.dev/logo.svg",
+        class: "logo-rounded",
+        style: {
+          background: "#0c0e0c",
+          color: "#ffffff",
+        },
         technologies: [
           "next",
           "react",
@@ -103,11 +114,9 @@ const projects = ref(
       },
       {
         id: "minecraft-ui",
-        title: "Micreaft UI",
-        description:
-          "The Minecraft UI which Mojand Studios wishes to had and haven't.",
+        description: "UI which Mojand Studios wishes to had and haven't.",
         href: "https://minecraft-ui.leman.dev/",
-        previewUrl: "https://minecraft-ui.leman.dev/images/brand.png",
+        brandUrl: "https://minecraft-ui.leman.dev/images/brand.png",
         class: "rounded",
         style: {
           background: "rgb(35, 35, 42)",
@@ -146,6 +155,8 @@ const selectedProject = computed(
 );
 </script>
 <style lang="scss">
+@import url("https://fonts.cdnfonts.com/css/pokemon-solid");
+
 .SelectedProject {
   width: 100%;
   height: 100%;
@@ -156,6 +167,15 @@ const selectedProject = computed(
   border-radius: 50%;
   overflow: hidden;
 }
+.logo-rounded .media img {
+  border-radius: 50%;
+  overflow: hidden;
+  aspect-ratio: 1/1;
+  width: auto !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
 .ProjectsSlider {
   width: 100%;
   height: 100%;

@@ -15,8 +15,8 @@ const props = defineProps({
   },
   color: {
     type: String,
-    default: "primary",
-    validator: (value) => ["primary", "secondary"].includes(value),
+    default: "current",
+    validator: (value) => ["current", "primary", "secondary"].includes(value),
   },
   variant: {
     type: String,
@@ -50,6 +50,10 @@ const classes = computed(() => {
   &[disabled] {
     opacity: 0.3;
     pointer-events: none;
+  }
+  &--current {
+    --color: currentColor;
+    --invert-color: var(--color-background);
   }
   &--primary {
     --color: var(--color-primary);
