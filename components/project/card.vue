@@ -23,13 +23,11 @@ import type { Project } from "~/types/project";
 
 interface ProjectCardProps {
   project: Project;
-  variant?: "default" | "circular";
+  variant?: "rounded" | "circular";
 }
 const props = withDefaults(defineProps<ProjectCardProps>(), {
-  variant: "default",
+  variant: "rounded",
 });
-
-console.log(props);
 
 const classes = computed(() => {
   return {
@@ -53,7 +51,13 @@ const classes = computed(() => {
   box-shadow: 0 0 0.5rem 0.25rem var(--color-background);
   &.ProjectCard_circular {
     border-radius: 50%;
+    box-shadow: 0 0 0.5rem 0.25rem var(--color-background);
   }
+  &.ProjectCard_rounded {
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.5rem 0.25rem var(--color-background);
+  }
+
   .media {
     width: 100%;
     height: 100%;

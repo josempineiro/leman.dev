@@ -1,34 +1,22 @@
 <template>
-  <div class="ProjectsSlider">
-    <RouletteTechnologies :filter="currentProject.technologies">
-      <ProjectCard
-        :project="currentProject"
-        variant="circular"
-        :class="currentProject.class"
-        :style="currentProject.style"
-      />
-    </RouletteTechnologies>
-    <FlexBox class="Buttons" direction="row" justify="space-between" w="full">
-      <Button
-        @click="prevProject"
-        class="NavButton"
-        variant="text"
-        color="secondary"
-        :disabled="currentProjectIndex === 0"
-      >
-        <IconChevron variant="left" />
-      </Button>
-      <Button
-        @click="nextProject"
-        class="NavButton"
-        variant="text"
-        color="secondary"
-        :disabled="currentProjectIndex === projects.length - 1"
-      >
-        <IconChevron variant="right" />
-      </Button>
-    </FlexBox>
-  </div>
+  <ProjectRoulette
+    v-if="viewType === ViewType.Roulette"
+    :projects="projects"
+    :current-project="currentProject"
+    @next-project="nextProject"
+    @prev-project="prevProject"
+  />
+  <ProjectList
+    v-if="viewType === ViewType.List"
+    :projects="projects"
+    :current-project="currentProject"
+    @next-project="nextProject"
+    @prev-project="prevProject"
+    @click-project="selectProject"
+  />
+  <ButtonFloat @click="nextViewType" position="fixed" top="1rem" right="1rem">
+    <IconChevron variant="right" />
+  </ButtonFloat>
 </template>
 
 <script setup lang="ts">
@@ -38,10 +26,15 @@ import secretSantaLogo from "~/assets/secret-santa-logo.png";
 import secretSantaBrand from "~/assets/secret-santa-brand.png";
 import pokedexTitleImage from "~/assets/pokedex.png";
 
+enum ViewType {
+  List = "List",
+  Roulette = "Roulette",
+}
+
 const route = useRoute();
 const router = useRouter();
 
-const projects = ref(
+const projects = ref<Project[]>(
   _.sortBy(
     [
       {
@@ -141,7 +134,7 @@ const projects = ref(
   )
 );
 
-const currentProject = computed(() => {
+const currentProject = computed<Project>(() => {
   return _.find(projects.value, (project: Project) => {
     return route.query.projectId ? project.id === route.query.projectId : true;
   });
@@ -152,27 +145,61 @@ const currentProjectIndex = computed(() => {
 });
 
 function nextProject() {
-  debugger;
   if (currentProjectIndex.value + 1 < projects.value.length) {
     router.push({
-      name: "portfolio",
+      path: route.path,
       query: {
+        ...route.query,
         projectId: projects.value[currentProjectIndex.value + 1].id,
       },
     });
   }
 }
 
+function selectProject(project: Project) {
+  router.push({
+    path: route.path,
+    query: {
+      ...route.query,
+      projectId: project.id,
+    },
+  });
+}
+
 function prevProject() {
   if (currentProjectIndex.value > 0) {
     router.push({
-      name: "portfolio",
+      path: route.path,
       query: {
+        ...route.query,
         projectId:
           projects.value[projects.value.indexOf(currentProject.value) - 1].id,
       },
     });
   }
+}
+
+const viewType = computed(() => {
+  return route.query.viewType
+    ? (route.query.viewType as ViewType)
+    : ViewType.List;
+});
+
+function nextViewType() {
+  router.push({
+    path: route.path,
+    query: {
+      ...route.query,
+      projectId: currentProject.value.id,
+      viewType:
+        ViewType[
+          Object.values(ViewType)[
+            (Object.values(ViewType).indexOf(viewType.value) + 1) %
+              Object.values(ViewType).length
+          ]
+        ],
+    },
+  });
 }
 </script>
 <style lang="scss">

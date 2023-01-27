@@ -87,7 +87,6 @@ const itemStyles = computed(() => {
 function onEnter(el, done) {
   const angle = el.dataset.angle;
   const index = el.dataset.index;
-  console.log(el.id);
   gsap.to(el, {
     duration: 0.2,
     delay: index * 0.1,
@@ -105,7 +104,6 @@ function onEnter(el, done) {
 function onAppear(el, done) {
   const angle = el.dataset.angle;
   const index = el.dataset.index;
-  console.log(el.id);
   gsap.to(el, {
     duration: 0.2,
     delay: index * 0.1,
