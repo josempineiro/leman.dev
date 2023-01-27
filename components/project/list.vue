@@ -1,25 +1,19 @@
 <template>
-  <ul class="List">
-    <li
-      v-for="project in projects"
-      :key="project.id"
-      :data-id="project.id"
-      :class="[
-        {
-          ListItem: true,
-          List_current: project.id === currentProject.id,
-        },
-      ]"
-      @click="$emit('click-project', project)"
-    >
+  <List
+    :items="projects"
+    :selected-item="currentProject"
+    :get-item-id="getProjectId"
+    @click-item="(item) => $emit('click-project', item)"
+  >
+    <template #item="{ item }">
       <ProjectCard
-        :key="project.id"
-        :project="project"
-        :class="project.class"
-        :style="project.style"
+        :key="item.id"
+        :project="item"
+        :class="item.class"
+        :style="item.style"
       />
-    </li>
-  </ul>
+    </template>
+  </List>
 </template>
 
 <script setup lang="ts">
@@ -30,10 +24,6 @@ const props = defineProps<{
   currentProject: Project;
 }>();
 
-const currentProjectIndex = computed(() => {
-  return props.projects.indexOf(props.currentProject);
-});
-
 onMounted(() => {
   console.log(document.querySelector(`[data-id="${props.currentProject.id}"]`));
   document
@@ -43,6 +33,7 @@ onMounted(() => {
       block: "center",
     });
 });
+
 onUpdated(() => {
   console.log(document.querySelector(`[data-id="${props.currentProject.id}"]`));
   document
@@ -57,12 +48,8 @@ const emit = defineEmits<{
   (event: "click-project"): void;
 }>();
 
-function nextProject() {
-  emit("nextProject");
-}
-
-function prevProject() {
-  emit("prevProject");
+function getProjectId(project: Project) {
+  return project.id;
 }
 </script>
 <style lang="scss">

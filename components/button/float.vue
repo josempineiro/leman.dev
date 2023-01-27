@@ -29,8 +29,8 @@ const props = withDefaults(
 );
 const classes = computed(() => {
   return {
-    "Button--float": true,
-    [`Button--float--${props.position}`]: true,
+    ButtonFloat: true,
+    [`ButtonFloat_${props.position}`]: true,
   };
 });
 const style = computed(() => {
@@ -44,19 +44,19 @@ const style = computed(() => {
 </script>
 
 <style lang="scss">
-.Button--float--fixed {
+.ButtonFloat_fixed {
   position: fixed;
 }
-.Button--float--absolute {
+.ButtonFloat_absolute {
   position: absolute;
 }
-.Button--float--relative {
+.ButtonFloat_relative {
   position: relative;
 }
-.Button--float--static {
+.ButtonFloat_static {
   position: static;
 }
-.Button--float--sticky {
+.ButtonFloat_sticky {
   position: sticky;
 }
 </style>
