@@ -34,8 +34,8 @@ const props = defineProps({
 
 <style>
 .Chevron {
-  width: 24px;
-  height: 24px;
+  width: 100%;
+  height: 100%;
   fill: currentColor;
 }
 </style>

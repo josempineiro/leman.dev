@@ -18,7 +18,7 @@
 </template>
 <style>
 .CSS {
-  width: 24px;
-  height: 24px;
+  width: 100%;
+  height: 100%;
 }
 </style>

@@ -44,6 +44,10 @@ const style = computed(() => {
 </script>
 
 <style lang="scss">
+.ButtonFloat {
+  width: 128px;
+  height: 128px;
+}
 .ButtonFloat_fixed {
   position: fixed;
 }

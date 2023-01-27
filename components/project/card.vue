@@ -12,6 +12,17 @@
       {{ project.title }}
     </div>
     <div class="ProjectCardDescription">{{ project.description }}</div>
+
+    <List
+      direction="row"
+      :get-item-id="getProjectId"
+      :items="project.technologies"
+      class="ProjectCardTechnologies"
+    >
+      <template #item="{ item }">
+        <TechnologyIcon :id="item" />
+      </template>
+    </List>
     <Button variant="outline" :href="project.href" class="ProjectCardAction">
       OPEN
     </Button>
@@ -20,6 +31,10 @@
 
 <script setup lang="ts">
 import type { Project } from "~/types/project";
+
+function getProjectId(project: Project): string {
+  return project.id;
+}
 
 interface ProjectCardProps {
   project: Project;
@@ -37,7 +52,7 @@ const classes = computed(() => {
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .ProjectCard {
   display: flex;
   flex-direction: column;
@@ -105,6 +120,12 @@ const classes = computed(() => {
     font-size: 0.75rem;
     font-weight: 600;
     color: #192b55;
+  }
+
+  .ProjectCardTechnologies .TechnologyIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0 0.25rem;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <ul class="List">
+  <ul :class="classes">
     <li
       v-for="item in items"
       :key="getItemId(item)"
@@ -7,10 +7,11 @@
       :class="[
         {
           ListItem: true,
-          List_current: getItemId(item) === getItemId(selectedItem),
+          List_current:
+            selectedItem && getItemId(item) === getItemId(selectedItem),
         },
       ]"
-      @click="$emit('click-item', item)"
+      @click="emit('click-item', item)"
     >
       <slot name="item" :item="item" />
     </li>
@@ -20,33 +21,53 @@
 <script setup lang="ts">
 const props = defineProps<{
   items: any[];
-  selectedItem: any;
+  selectedItem?: any;
   getItemId: (item: any) => string;
+  direction?: "row" | "column";
 }>();
 
+const classes = computed(() => {
+  return {
+    List: true,
+    List_row: props.direction === "row",
+    List_column: props.direction === "column",
+  };
+});
+const emit = defineEmits<{
+  (event: "click-item", item: any): void;
+}>();
 onMounted(() => {
-  document
-    .querySelector(`[data-id="${props.getItemId(props.selectedItem)}"]`)
-    ?.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
+  if (props.selectedItem) {
+    document
+      .querySelector(`[data-id="${props.getItemId(props.selectedItem)}"]`)
+      ?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+  }
 });
 onUpdated(() => {
-  document
-    .querySelector(`[data-id="${props.getItemId(props.selectedItem)}"]`)
-    ?.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
+  if (props.selectedItem) {
+    document
+      .querySelector(`[data-id="${props.getItemId(props.selectedItem)}"]`)
+      ?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+  }
 });
 </script>
 <style lang="scss">
 .List {
   display: flex;
-  flex-direction: column;
   gap: 1rem;
   padding: 1rem;
+  &.List_row {
+    flex-direction: row;
+  }
+  &.List_column {
+    flex-direction: column;
+  }
   .ListItem {
     width: 100%;
     max-height: 200px;

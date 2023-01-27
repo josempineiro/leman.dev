@@ -1,14 +1,28 @@
 <template>
   <div class="ProjectRoulette">
-    <RouletteTechnologies :filter="currentProject.technologies">
-      <ProjectCard
-        :key="currentProject.id"
-        :project="currentProject"
-        variant="circular"
-        :class="currentProject.class"
-        :style="currentProject.style"
-      />
-    </RouletteTechnologies>
+    <Roulette
+      :radius="isMobile ? 120 : 200"
+      :item-radius="isMobile ? 35 : 50"
+      :items="visibleTechnologies"
+      :rotate="false"
+    >
+      <template #default>
+        <ProjectCard
+          :key="currentProject.id"
+          :project="currentProject"
+          variant="circular"
+          :class="currentProject.class"
+          :style="currentProject.style"
+        />
+      </template>
+      <template #item="{ item: technology }">
+        <Technology
+          :key="(technology as Technology).id"
+          :technology="(technology as Technology)"
+          class="ProjectTechnologyIcon"
+        />
+      </template>
+    </Roulette>
     <FlexBox class="Buttons" justify="space-between" w="full">
       <Button
         @click="prevProject"
@@ -17,7 +31,7 @@
         color="secondary"
         :disabled="currentProjectIndex === 0"
       >
-        <IconChevron variant="left" />
+        <Chevron variant="left" />
       </Button>
       <Button
         @click="nextProject"
@@ -26,14 +40,16 @@
         color="secondary"
         :disabled="currentProjectIndex === projects.length - 1"
       >
-        <IconChevron variant="right" />
+        <Chevron variant="right" />
       </Button>
     </FlexBox>
   </div>
 </template>
 
 <script setup lang="ts">
+import _ from "lodash";
 import type { Project } from "~/types/project";
+import type { Technology } from "~/types/technology";
 
 const props = defineProps<{
   projects: Project[];
@@ -49,6 +65,23 @@ const currentProjectIndex = computed(() => {
   return props.projects.indexOf(props.currentProject);
 });
 
+const technologies = useTechnologies();
+
+const visibleTechnologies = computed(() =>
+  _.intersectionWith(
+    technologies.value,
+    props.currentProject.technologies,
+    (technology, comparedTechnology) => technology.id === comparedTechnology
+  ).map((technology) => {
+    return {
+      ...technology,
+      component: resolveComponent(technology.component),
+    };
+  })
+);
+
+const { isMobile } = useDevice();
+
 function nextProject() {
   emit("nextProject");
 }
@@ -58,8 +91,6 @@ function prevProject() {
 }
 </script>
 <style lang="scss">
-@import url("https://fonts.cdnfonts.com/css/pokemon-solid");
-
 .logo-rounded .media img {
   border-radius: 50%;
   overflow: hidden;
@@ -86,6 +117,12 @@ function prevProject() {
 .NavButton .Chevron {
   width: 48px;
   height: 48px;
+}
+
+.ProjectTechnologyIcon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 @media (max-width: 768px) {

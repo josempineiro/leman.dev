@@ -14,4 +14,13 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: "page", mode: "out-in", duration: 500 },
   },
+  components: {
+    dirs: [
+      {
+        path: "~/components/icon",
+        global: true,
+      },
+      "~/components",
+    ],
+  },
 });

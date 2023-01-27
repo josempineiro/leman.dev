@@ -119,8 +119,8 @@
 </template>
 <style lang="scss">
 .Rollup {
-  width: 24px;
-  height: 24px;
+  width: 100%;
+  height: 100%;
   .st0 {
     fill: url(#XMLID_4_);
   }

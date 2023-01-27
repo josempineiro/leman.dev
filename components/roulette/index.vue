@@ -141,7 +141,14 @@ function onBeforeEnter(el) {
   });
 }
 function onAfterEnter(el) {
-  gsap.set(el, {
+  const angle = el.dataset.angle;
+  const index = el.dataset.index;
+  gsap.to(el, {
+    duration: 0.2,
+    x:
+      props.radius + itemOffsetX.value * Math.cos(angle) - props.itemRadius / 2,
+    y:
+      props.radius + itemOffsetX.value * Math.sin(angle) - props.itemRadius / 2,
     opacity: 1,
     scaleX: 1,
     scaleY: 1,
