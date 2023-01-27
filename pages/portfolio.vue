@@ -1,11 +1,11 @@
 <template>
   <div class="ProjectsSlider">
-    <RouletteTechnologies :filter="selectedProject.technologies">
+    <RouletteTechnologies :filter="currentProject.technologies">
       <ProjectCard
-        :project="selectedProject"
+        :project="currentProject"
         variant="circular"
-        :class="selectedProject.class"
-        :style="selectedProject.style"
+        :class="currentProject.class"
+        :style="currentProject.style"
       />
     </RouletteTechnologies>
     <FlexBox class="Buttons" direction="row" justify="space-between" w="full">
@@ -31,11 +31,15 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import _ from "lodash";
+import type { Project } from "~/types/project";
 import secretSantaLogo from "~/assets/secret-santa-logo.png";
 import secretSantaBrand from "~/assets/secret-santa-brand.png";
 import pokedexTitleImage from "~/assets/pokedex.png";
+
+const route = useRoute();
+const router = useRouter();
 
 const projects = ref(
   _.sortBy(
@@ -137,22 +141,39 @@ const projects = ref(
   )
 );
 
-const currentProjectIndex = ref(0);
+const currentProject = computed(() => {
+  return _.find(projects.value, (project: Project) => {
+    return route.query.projectId ? project.id === route.query.projectId : true;
+  });
+});
+
+const currentProjectIndex = computed(() => {
+  return projects.value.indexOf(currentProject.value);
+});
 
 function nextProject() {
-  currentProjectIndex.value = Math.min(
-    projects.value.length - 1,
-    currentProjectIndex.value + 1
-  );
+  debugger;
+  if (currentProjectIndex.value + 1 < projects.value.length) {
+    router.push({
+      name: "portfolio",
+      query: {
+        projectId: projects.value[currentProjectIndex.value + 1].id,
+      },
+    });
+  }
 }
 
 function prevProject() {
-  currentProjectIndex.value = Math.max(0, currentProjectIndex.value - 1);
+  if (currentProjectIndex.value > 0) {
+    router.push({
+      name: "portfolio",
+      query: {
+        projectId:
+          projects.value[projects.value.indexOf(currentProject.value) - 1].id,
+      },
+    });
+  }
 }
-
-const selectedProject = computed(
-  () => projects.value[currentProjectIndex.value]
-);
 </script>
 <style lang="scss">
 @import url("https://fonts.cdnfonts.com/css/pokemon-solid");

@@ -19,16 +19,7 @@
 </template>
 
 <script setup lang="ts">
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  brandUrl: string;
-  logoUrl: string;
-  variant: "default" | "circular";
-  href: string;
-  technologies: string[];
-}
+import type { Project } from "~/types/project";
 
 interface ProjectCardProps {
   project: Project;
