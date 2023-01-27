@@ -51,7 +51,7 @@ const classes = computed(() => {
   padding: 10%;
   background-color: var(--color-background);
   box-shadow: 0 0 0.5rem 0.25rem var(--color-background);
-  &_circular {
+  &.ProjectCard_circular {
     border-radius: 50%;
   }
   .media {
@@ -80,17 +80,17 @@ const classes = computed(() => {
     }
   }
 
-  &Description {
+  .ProjectCardDescription {
     font-size: 0.875rem;
     text-align: center;
   }
 
-  &Action {
+  .ProjectCardAction {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  &Link {
+  .ProjectCardLink {
     border-width: 1px;
     border-style: solid;
     border-color: #192b55;

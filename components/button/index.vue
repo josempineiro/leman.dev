@@ -28,8 +28,8 @@ const props = defineProps({
 const classes = computed(() => {
   return {
     Button: true,
-    [`Button--${props.color}`]: true,
-    [`Button--${props.variant}`]: true,
+    [`Button__${props.color}`]: true,
+    [`Button__${props.variant}`]: true,
   };
 });
 </script>
@@ -51,29 +51,29 @@ const classes = computed(() => {
     opacity: 0.3;
     pointer-events: none;
   }
-  &--current {
+  .Button__current {
     --color: currentColor;
     --invert-color: var(--color-background);
   }
-  &--primary {
+  .Button__primary {
     --color: var(--color-primary);
     --invert-color: var(--color-background);
   }
-  &--secondary {
+  .Button__secondary {
     --color: var(--color-secondary);
     --invert-color: var(--color-background);
   }
-  &--text {
+  .Button__text {
     border: 1px solid transparent;
     background-color: transparent;
     color: var(--color);
   }
-  &--outline {
+  .Button__outline {
     border: 1px solid var(--color);
     background-color: transparent;
     color: var(--color);
   }
-  &--fill {
+  .Button__fill {
     border: 1px solid var(--color);
     background-color: var(--color);
     color: var(--invert-color);

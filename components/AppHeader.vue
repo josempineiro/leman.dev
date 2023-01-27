@@ -47,7 +47,7 @@ onMounted(() => {
     align-items: center;
     transition: background-color 0.3s ease-in-out;
 
-    &_sticky {
+    .AppHeader_sticky {
       background-color: #025b62;
     }
     .AppLogo {

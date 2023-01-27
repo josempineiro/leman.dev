@@ -155,7 +155,7 @@ function onAfterEnter(el) {
 .Roulette {
   position: relative;
 
-  &Content {
+  .RouletteContent {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -164,14 +164,14 @@ function onAfterEnter(el) {
     transform: translate(-50%, -50%);
   }
 
-  &Items {
+  .RouletteItems {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
   }
-  &Item {
+  .RouletteItem {
     position: absolute;
     transition: 0.2s all ease;
     transform: translate3d(
