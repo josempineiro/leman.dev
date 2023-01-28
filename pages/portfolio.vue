@@ -7,6 +7,7 @@
     @prev-project="prevProject"
   />
   <ProjectList
+    class="ProjectList"
     v-if="viewType === ViewType.List"
     :projects="projects"
     :current-project="currentProject"
@@ -14,8 +15,15 @@
     @prev-project="prevProject"
     @click-project="selectProject"
   />
-  <ButtonFloat @click="nextViewType" position="fixed" top="1rem" right="1rem">
-    <Chevron variant="right" />
+  <ButtonFloat
+    @click="nextViewType"
+    position="fixed"
+    top="1rem"
+    right="1rem"
+    color="secondary"
+    variant="fill"
+  >
+    <View :variant="viewType" />
   </ButtonFloat>
 </template>
 
@@ -105,16 +113,6 @@ function nextViewType() {
 <style lang="scss">
 @import url("https://fonts.cdnfonts.com/css/pokemon-solid");
 
-.SelectedProject {
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  background-color: white;
-  border: 1px solid #eaeaea;
-
-  border-radius: 50%;
-  overflow: hidden;
-}
 .logo-rounded .media img {
   border-radius: 50%;
   overflow: hidden;
@@ -123,21 +121,8 @@ function nextViewType() {
   height: 100% !important;
   object-fit: cover !important;
 }
-
-.ProjectsSlider {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-.SelectedProject__preview {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  &.rounded {
-    border-radius: 50%;
-  }
+.ProjectList {
+  max-width: 80vh;
 }
 
 .Buttons {
@@ -152,12 +137,6 @@ function nextViewType() {
 }
 
 @media (max-width: 768px) {
-  .ProjectsSlider {
-    flex-direction: column;
-  }
-  .SelectedProject {
-    padding: 15%;
-  }
   .Buttons {
     bottom: 0;
   }

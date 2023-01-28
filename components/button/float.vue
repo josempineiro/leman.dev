@@ -30,7 +30,11 @@ const props = withDefaults(
 const classes = computed(() => {
   return {
     ButtonFloat: true,
-    [`ButtonFloat_${props.position}`]: true,
+    ButtonFloat_fixed: props.position === "fixed",
+    ButtonFloat_absolute: props.position === "absolute",
+    ButtonFloat_relative: props.position === "relative",
+    ButtonFloat_static: props.position === "static",
+    ButtonFloat_sticky: props.position === "sticky",
   };
 });
 const style = computed(() => {
@@ -45,8 +49,9 @@ const style = computed(() => {
 
 <style lang="scss">
 .ButtonFloat {
-  width: 128px;
-  height: 128px;
+  width: 48px;
+  height: 48px;
+  padding: 0.5rem;
 }
 .ButtonFloat_fixed {
   position: fixed;

@@ -62,6 +62,7 @@ onUpdated(() => {
   display: flex;
   gap: 1rem;
   padding: 1rem;
+  width: 100%;
   &.List_row {
     flex-direction: row;
   }
@@ -70,7 +71,6 @@ onUpdated(() => {
   }
   .ListItem {
     width: 100%;
-    max-height: 200px;
     &.List_current {
       background-color: #f5f5f5;
       box-shadow: 0 0 0px 5px rgb(255 255 255), 0 0 0px 10px rgb(0 0 0);

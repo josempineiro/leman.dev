@@ -7,7 +7,7 @@ export interface Project {
   brandUrl?: string;
   logoUrl?: string;
   href: string;
-  technologies: string[];
+  technologies?: string[];
   style?: CSSProperties;
   class?: string;
 }

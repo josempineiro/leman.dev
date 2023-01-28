@@ -23,13 +23,23 @@ const props = defineProps({
     default: "text",
     validator: (value) => ["text", "outline", "fill"].includes(value),
   },
+  width: {
+    type: String,
+    default: "auto" | "full",
+  },
 });
 
 const classes = computed(() => {
   return {
     Button: true,
-    [`Button__${props.color}`]: true,
-    [`Button__${props.variant}`]: true,
+    Button__current: props.color === "current",
+    Button__primary: props.color === "primary",
+    Button__secondary: props.color === "secondary",
+    Button__text: props.variant === "text",
+    Button__outline: props.variant === "outline",
+    Button__fill: props.variant === "fill",
+    Button__full: props.width === "full",
+    Button__auto: props.width === "auto",
   };
 });
 </script>
@@ -47,36 +57,42 @@ const classes = computed(() => {
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
-  &[disabled] {
-    opacity: 0.3;
-    pointer-events: none;
-  }
-  .Button__current {
+  &.Button__current {
     --color: currentColor;
     --invert-color: var(--color-background);
   }
-  .Button__primary {
+  &.Button__primary {
     --color: var(--color-primary);
     --invert-color: var(--color-background);
   }
-  .Button__secondary {
+  &.Button__secondary {
     --color: var(--color-secondary);
     --invert-color: var(--color-background);
   }
-  .Button__text {
+  &.Button__text {
     border: 1px solid transparent;
     background-color: transparent;
     color: var(--color);
   }
-  .Button__outline {
+  &.Button__outline {
     border: 1px solid var(--color);
     background-color: transparent;
     color: var(--color);
   }
-  .Button__fill {
+  &.Button__fill {
     border: 1px solid var(--color);
     background-color: var(--color);
     color: var(--invert-color);
+  }
+  &.Button__full {
+    width: 100%;
+  }
+  &.Button__auto {
+    width: auto;
+  }
+  &[disabled] {
+    opacity: 0.3;
+    pointer-events: none;
   }
 }
 </style>

@@ -7,12 +7,14 @@
     direction="column"
   >
     <template #item="{ item }">
-      <ProjectCard
-        :key="item.id"
-        :project="item"
-        :class="item.class"
-        :style="item.style"
-      />
+      <AspectRatio ratio="1/1">
+        <ProjectCard
+          :key="item.id"
+          :project="item"
+          :class="item.class"
+          :style="item.style"
+        />
+      </AspectRatio>
     </template>
   </List>
 </template>

@@ -12,17 +12,18 @@
       {{ project.title }}
     </div>
     <div class="ProjectCardDescription">{{ project.description }}</div>
-
-    <List
-      direction="row"
-      :get-item-id="getProjectId"
-      :items="project.technologies"
-      class="ProjectCardTechnologies"
-    >
-      <template #item="{ item }">
-        <TechnologyIcon :id="item" />
-      </template>
-    </List>
+    <template v-if="project.technologies && project.technologies.length > 0">
+      <List
+        direction="row"
+        :get-item-id="getProjectId"
+        :items="project.technologies"
+        class="ProjectCardTechnologies"
+      >
+        <template #item="{ item }">
+          <TechnologyIcon :id="item" />
+        </template>
+      </List>
+    </template>
     <Button variant="outline" :href="project.href" class="ProjectCardAction">
       OPEN
     </Button>
@@ -38,16 +39,16 @@ function getProjectId(project: Project): string {
 
 interface ProjectCardProps {
   project: Project;
-  variant?: "rounded" | "circular";
+  variant?: "squared" | "circular";
 }
 const props = withDefaults(defineProps<ProjectCardProps>(), {
-  variant: "rounded",
+  variant: "squared",
 });
 
 const classes = computed(() => {
   return {
     ProjectCard: true,
-    [`ProjectCard_${props.variant}`]: true,
+    ProjectCard_circular: props.variant === "circular",
   };
 });
 </script>

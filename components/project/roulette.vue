@@ -9,7 +9,7 @@
       <template #default>
         <ProjectCard
           :key="currentProject.id"
-          :project="currentProject"
+          :project="$omit(currentProject, ['technologies'])"
           variant="circular"
           :class="currentProject.class"
           :style="currentProject.style"
