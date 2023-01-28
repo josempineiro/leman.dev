@@ -54,6 +54,7 @@ const style = computed(() => {
   padding: 0.5rem;
 }
 .ButtonFloat_fixed {
+  z-index: 200;
   position: fixed;
 }
 .ButtonFloat_absolute {

@@ -60,8 +60,6 @@ onUpdated(() => {
 <style lang="scss">
 .List {
   display: flex;
-  gap: 1rem;
-  padding: 1rem;
   width: 100%;
   &.List_row {
     flex-direction: row;

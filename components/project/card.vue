@@ -13,16 +13,18 @@
     </div>
     <div class="ProjectCardDescription">{{ project.description }}</div>
     <template v-if="project.technologies && project.technologies.length > 0">
-      <List
+      <FlexBox
         direction="row"
-        :get-item-id="getProjectId"
-        :items="project.technologies"
+        justify="center"
+        align="center"
         class="ProjectCardTechnologies"
       >
-        <template #item="{ item }">
-          <TechnologyIcon :id="item" />
-        </template>
-      </List>
+        <TechnologyIcon
+          v-for="technology in project.technologies"
+          :key="technology"
+          :id="technology"
+        />
+      </FlexBox>
     </template>
     <Button variant="outline" :href="project.href" class="ProjectCardAction">
       OPEN
@@ -59,7 +61,8 @@ const classes = computed(() => {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  gap: 8px;
+
+  gap: 16px;
   width: 100%;
   height: 100%;
   padding: 10%;
@@ -71,6 +74,8 @@ const classes = computed(() => {
   }
   &.ProjectCard_rounded {
     border-radius: 0.5rem;
+
+    gap: 16px;
     box-shadow: 0 0 0.5rem 0.25rem var(--color-background);
   }
 

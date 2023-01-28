@@ -5,6 +5,7 @@
     :get-item-id="getProjectId"
     @click-item="(item) => emit('click-project', item)"
     direction="column"
+    class="ProjectList"
   >
     <template #item="{ item }">
       <AspectRatio ratio="1/1">
@@ -55,4 +56,8 @@ function getProjectId(project: Project) {
   return project.id;
 }
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+.ProjectList {
+  gap: 32px;
+}
+</style>

@@ -34,26 +34,28 @@ onMounted(() => {
 </script>
 <style lang="scss">
 .HeaderWrapper {
-  min-height: 60px;
+  min-height: 78px;
 
   .AppHeader {
     position: fixed;
+    z-index: 100;
     top: 0;
     left: 0;
     width: 100%;
-    height: 60px;
+    height: 78px;
     padding: 0 32px;
     display: flex;
     align-items: center;
-    transition: background-color 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    color: #192b55;
 
-    .AppHeader_sticky {
-      background-color: #025b62;
+    &.AppHeader_sticky {
+      background-color: #192b55;
+      color: white;
     }
     .AppLogo {
       font-size: 24px;
       font-weight: 700;
-      color: #192b55;
     }
   }
 }
