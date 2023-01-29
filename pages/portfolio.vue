@@ -121,7 +121,7 @@ function nextViewType() {
   height: 100% !important;
   object-fit: cover !important;
 }
-.ProjectList {
+.ProjectList .ProjectCard_wrapper {
   max-width: 80vh;
 }
 

@@ -26,26 +26,6 @@ const props = defineProps<{
   currentProject: Project;
 }>();
 
-onMounted(() => {
-  console.log(document.querySelector(`[data-id="${props.currentProject.id}"]`));
-  document
-    .querySelector(`[data-id="${props.currentProject.id}"]`)
-    ?.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
-});
-
-onUpdated(() => {
-  console.log(document.querySelector(`[data-id="${props.currentProject.id}"]`));
-  document
-    .querySelector(`[data-id="${props.currentProject.id}"]`)
-    ?.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
-});
-
 const emit = defineEmits<{
   (event: "click-project", project: Project): void;
 }>();

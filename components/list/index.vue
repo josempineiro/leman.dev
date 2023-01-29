@@ -41,7 +41,6 @@ onMounted(() => {
     document
       .querySelector(`[data-id="${props.getItemId(props.selectedItem)}"]`)
       ?.scrollIntoView({
-        behavior: "smooth",
         block: "center",
       });
   }

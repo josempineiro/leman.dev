@@ -1,34 +1,36 @@
 <template>
   <div :class="classes">
-    <div v-if="project.logoUrl" class="ProjectCardMedia">
-      <img :src="project.logoUrl" :alt="project.title" />
-    </div>
-    <div class="ProjectCardContent">
-      <img
-        v-if="project.brandUrl"
-        :src="project.brandUrl"
-        :alt="project.title"
-      />
-      {{ project.title }}
-    </div>
-    <div class="ProjectCardDescription">{{ project.description }}</div>
-    <template v-if="project.technologies && project.technologies.length > 0">
-      <FlexBox
-        direction="row"
-        justify="center"
-        align="center"
-        class="ProjectCardTechnologies"
-      >
-        <TechnologyIcon
-          v-for="technology in project.technologies"
-          :key="technology"
-          :id="technology"
+    <div class="ProjectCard_wrapper">
+      <div v-if="project.logoUrl" class="ProjectCardMedia">
+        <img :src="project.logoUrl" :alt="project.title" />
+      </div>
+      <div class="ProjectCardContent">
+        <img
+          v-if="project.brandUrl"
+          :src="project.brandUrl"
+          :alt="project.title"
         />
-      </FlexBox>
-    </template>
-    <Button variant="outline" :href="project.href" class="ProjectCardAction">
-      OPEN
-    </Button>
+        {{ project.title }}
+      </div>
+      <div class="ProjectCardDescription">{{ project.description }}</div>
+      <template v-if="project.technologies && project.technologies.length > 0">
+        <FlexBox
+          direction="row"
+          justify="center"
+          align="center"
+          class="ProjectCardTechnologies"
+        >
+          <TechnologyIcon
+            v-for="technology in project.technologies"
+            :key="technology"
+            :id="technology"
+          />
+        </FlexBox>
+      </template>
+      <Button variant="outline" :href="project.href" class="ProjectCardAction">
+        OPEN
+      </Button>
+    </div>
   </div>
 </template>
 
@@ -60,13 +62,20 @@ const classes = computed(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-
-  gap: 16px;
   width: 100%;
   height: 100%;
-  padding: 10%;
+
   background-color: var(--color-background);
+  .ProjectCard_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 16px;
+    width: 100%;
+    height: 100%;
+    padding: 10%;
+  }
   &.ProjectCard_circular {
     border-radius: 50%;
     box-shadow: 0 0 0.5rem 0.25rem var(--color-background);
