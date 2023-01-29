@@ -113,7 +113,7 @@ function nextViewType() {
 <style lang="scss">
 @import url("https://fonts.cdnfonts.com/css/pokemon-solid");
 
-.logo-rounded .media img {
+.logo-rounded .ProjectCardMedia img {
   border-radius: 50%;
   overflow: hidden;
   aspect-ratio: 1/1;

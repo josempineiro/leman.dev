@@ -15,11 +15,6 @@
       @before-enter="onBeforeEnter"
       @enter="onEnter"
       @leave="onLeave"
-      @after-enter="onAfterEnter"
-      @appear="onAppear"
-      @before-appear="onBeforeEnter"
-      @appear-cancelled="onLeave"
-      @enter-cancelled="onLeave"
     >
       <li
         v-for="(item, index) in items"
@@ -119,7 +114,6 @@ function onAppear(el, done) {
 }
 
 function onLeave(el, done) {
-  const angle = el.dataset.angle;
   gsap.to(el, {
     duration: 0.2,
     onComplete: done,
@@ -142,7 +136,6 @@ function onBeforeEnter(el) {
 }
 function onAfterEnter(el) {
   const angle = el.dataset.angle;
-  const index = el.dataset.index;
   gsap.to(el, {
     duration: 0.2,
     x:

@@ -1,6 +1,6 @@
 <template>
   <div :class="classes">
-    <div v-if="project.logoUrl" class="media">
+    <div v-if="project.logoUrl" class="ProjectCardMedia">
       <img :src="project.logoUrl" :alt="project.title" />
     </div>
     <div class="ProjectCardContent">
@@ -67,7 +67,6 @@ const classes = computed(() => {
   height: 100%;
   padding: 10%;
   background-color: var(--color-background);
-  box-shadow: 0 0 0.5rem 0.25rem var(--color-background);
   &.ProjectCard_circular {
     border-radius: 50%;
     box-shadow: 0 0 0.5rem 0.25rem var(--color-background);
@@ -76,14 +75,11 @@ const classes = computed(() => {
     border-radius: 0.5rem;
 
     gap: 16px;
-    box-shadow: 0 0 0.5rem 0.25rem var(--color-background);
   }
 
-  .media {
+  .ProjectCardMedia {
     width: 100%;
-    height: 100%;
     overflow: hidden;
-    flex: 1;
     align-items: center;
     display: flex;
     justify-content: center;

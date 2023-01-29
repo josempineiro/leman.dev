@@ -70,7 +70,7 @@ const technologies = useTechnologies();
 const visibleTechnologies = computed(() =>
   _.intersectionWith(
     technologies.value,
-    props.currentProject.technologies,
+    props.currentProject.technologies || [],
     (technology, comparedTechnology) => technology.id === comparedTechnology
   ).map((technology) => {
     return {

@@ -23,7 +23,6 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: 1rem;
   }
 }
 </style>

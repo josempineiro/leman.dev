@@ -69,10 +69,6 @@ onUpdated(() => {
   }
   .ListItem {
     width: 100%;
-    &.List_current {
-      background-color: #f5f5f5;
-      box-shadow: 0 0 0px 5px rgb(255 255 255), 0 0 0px 10px rgb(0 0 0);
-    }
   }
 }
 

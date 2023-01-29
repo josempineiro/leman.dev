@@ -8,14 +8,12 @@
     class="ProjectList"
   >
     <template #item="{ item }">
-      <AspectRatio ratio="1/1">
-        <ProjectCard
-          :key="item.id"
-          :project="item"
-          :class="item.class"
-          :style="item.style"
-        />
-      </AspectRatio>
+      <ProjectCard
+        :key="item.id"
+        :project="item"
+        :class="item.class"
+        :style="item.style"
+      />
     </template>
   </List>
 </template>
@@ -58,6 +56,14 @@ function getProjectId(project: Project) {
 </script>
 <style lang="scss">
 .ProjectList {
-  gap: 32px;
+  scroll-snap-type: y mandatory;
+  overflow: auto;
+  height: calc(100vh - 78px);
+  display: block;
+}
+.ProjectList .ListItem {
+  scroll-snap-align: center;
+  height: calc(100vh - 78px);
+  display: block;
 }
 </style>
