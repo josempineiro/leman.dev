@@ -65,7 +65,7 @@ const classes = computed(() => {
   width: 100%;
   height: 100%;
 
-  background-color: var(--color-background);
+  background-color: var(--bg-color);
   .ProjectCard_wrapper {
     display: flex;
     flex-direction: column;
@@ -78,7 +78,7 @@ const classes = computed(() => {
   }
   &.ProjectCard_circular {
     border-radius: 50%;
-    box-shadow: 0 0 0.5rem 0.25rem var(--color-background);
+    box-shadow: 0 0 0.5rem 0.25rem var(--bg-color);
   }
   &.ProjectCard_rounded {
     border-radius: 0.5rem;

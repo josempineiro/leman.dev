@@ -8,6 +8,6 @@ export interface Project {
   logoUrl?: string;
   href: string;
   technologies?: string[];
-  style?: CSSProperties;
+  style: CSSProperties;
   class?: string;
 }

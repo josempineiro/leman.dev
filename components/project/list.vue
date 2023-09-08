@@ -38,12 +38,11 @@ function getProjectId(project: Project) {
 .ProjectList {
   scroll-snap-type: y mandatory;
   overflow: auto;
-  height: calc(100vh - 78px);
   display: block;
 }
 .ProjectList .ListItem {
   scroll-snap-align: center;
-  height: calc(100vh - 78px);
+  height: 100%;
   display: block;
 }
 </style>

@@ -55,6 +55,9 @@ const props = defineProps({
       );
     },
   },
+  gap: {
+    type: String,
+  },
   grow: {
     type: Number,
     default: 0,
@@ -76,6 +79,12 @@ const classes = computed(() => {
     `FlexBox_wrap_${props.wrap}`,
     `FlexBox_basis_${props.basis}`,
     `FlexBox_${props.w}`,
+    {
+      FlexBox_gap_xs: props.gap === "xs",
+      FlexBox_gap_sm: props.gap === "sm",
+      FlexBox_gap_md: props.gap === "md",
+      FlexBox_gap_lg: props.gap === "lg",
+    },
   ];
 });
 </script>
@@ -154,6 +163,19 @@ const classes = computed(() => {
 
   &.FlexBox_full {
     width: 100%;
+  }
+
+  &.FlexBox_gap_xs {
+    gap: 0.25rem;
+  }
+  &.FlexBox_gap_sm {
+    gap: 0.5rem;
+  }
+  &.FlexBox_gap_md {
+    gap: 1rem;
+  }
+  &.FlexBox_gap_lg {
+    gap: 2rem;
   }
 }
 </style>

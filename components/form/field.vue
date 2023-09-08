@@ -41,15 +41,15 @@ const classes = computed(() => {
 
   &.FormField__current {
     --color: currentColor;
-    --invert-color: var(--color-background);
+    --invert-color: var(--bg-color);
   }
   &.FormField__primary {
     --color: var(--color-primary);
-    --invert-color: var(--color-background);
+    --invert-color: var(--bg-color);
   }
   &.FormField__secondary {
     --color: var(--color-secondary);
-    --invert-color: var(--color-background);
+    --invert-color: var(--bg-color);
   }
   &.FormField__text {
     border: 1px solid transparent;

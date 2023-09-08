@@ -22,9 +22,9 @@ const items = [
   },
   {
     id: 3,
-    to: "/portfolio",
+    to: "/cv",
     media: "📫",
-    title: "Portfolio",
+    title: "CV",
   },
   {
     id: 3,

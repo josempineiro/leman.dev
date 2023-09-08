@@ -109,6 +109,18 @@ function nextViewType() {
     },
   });
 }
+
+const { theme } = useTheme();
+
+watch(currentProject, (project) => {
+  if (project) {
+    console.log(project.style);
+    theme.value = {
+      color: project.style.color || "white",
+      backgroundColor: project.style.backgroundColor || "black",
+    };
+  }
+});
 </script>
 <style lang="scss">
 @import url("https://fonts.cdnfonts.com/css/pokemon-solid");

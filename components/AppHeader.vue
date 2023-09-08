@@ -1,9 +1,7 @@
 <template>
-  <div ref="header" class="HeaderWrapper" id="asdfasdfasdf">
+  <div ref="header" class="HeaderWrapper">
     <header :class="classes">
-      <NuxtLink to="/">
-        <AppLogo />
-      </NuxtLink>
+      <slot></slot>
     </header>
   </div>
 </template>
@@ -20,8 +18,8 @@ const classes = computed(() => {
 
 onMounted(() => {
   const observer = new IntersectionObserver(
-    ([e]) => {
-      if (e.intersectionRatio < 1) {
+    ([event]) => {
+      if (event.intersectionRatio < 1) {
         sticky.value = true;
       } else {
         sticky.value = false;
@@ -34,25 +32,20 @@ onMounted(() => {
 </script>
 <style lang="scss">
 .HeaderWrapper {
-  min-height: 78px;
-
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 78px;
+  background-color: var(--bg-color);
+  color: var(--color-text);
   .AppHeader {
-    position: fixed;
-    z-index: 100;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 78px;
+    height: 100%;
     padding: 0 32px;
     display: flex;
     align-items: center;
     transition: all 0.3s ease-in-out;
-    color: #192b55;
-
-    &.AppHeader_sticky {
-      background-color: #192b55;
-      color: white;
-    }
     .AppLogo {
       font-size: 24px;
       font-weight: 700;

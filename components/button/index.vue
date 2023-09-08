@@ -16,7 +16,8 @@ const props = defineProps({
   color: {
     type: String,
     default: "current",
-    validator: (value) => ["current", "primary", "secondary"].includes(value),
+    validator: (value) =>
+      ["accent", "primary", "secondary", "current"].includes(value),
   },
   variant: {
     type: String,
@@ -33,6 +34,7 @@ const classes = computed(() => {
   return {
     Button: true,
     Button__current: props.color === "current",
+    Button__accent: props.color === "accent",
     Button__primary: props.color === "primary",
     Button__secondary: props.color === "secondary",
     Button__text: props.variant === "text",
@@ -56,18 +58,23 @@ const classes = computed(() => {
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  white-space: pre;
 
   &.Button__current {
     --color: currentColor;
-    --invert-color: var(--color-background);
+    --invert-color: var(--bg-color);
+  }
+  &.Button__accent {
+    --color: var(--color-accent);
+    --invert-color: var(--bg-color);
   }
   &.Button__primary {
     --color: var(--color-primary);
-    --invert-color: var(--color-background);
+    --invert-color: var(--bg-color);
   }
   &.Button__secondary {
     --color: var(--color-secondary);
-    --invert-color: var(--color-background);
+    --invert-color: var(--bg-color);
   }
   &.Button__text {
     border: 1px solid transparent;

@@ -15,7 +15,7 @@ export default function () {
           href: "https://pokedex.leman.dev",
           style: {
             color: "#fddf00",
-            background: "#295ebb",
+            backgroundColor: "#295ebb",
           },
           brandUrl: pokedexTitleImage,
           logoUrl:
@@ -37,7 +37,7 @@ export default function () {
           logoUrl: "https://promilsim.com/images/airsoft-2.jpg",
           class: "logo-rounded",
           style: {
-            background: "#2d2d2d",
+            backgroundColor: "#2d2d2d",
             color: "#ffffff",
           },
           technologies: [
@@ -57,6 +57,11 @@ export default function () {
           logoUrl: secretSantaLogo,
           brandUrl: secretSantaBrand,
           class: "rounded",
+
+          style: {
+            backgroundColor: "#2d2d2d",
+            color: "#ffffff",
+          },
           technologies: [
             "next",
             "react",
@@ -75,7 +80,7 @@ export default function () {
           brandUrl: "https://rick-and-morty.leman.dev/logo.svg",
           class: "logo-rounded",
           style: {
-            background: "#0c0e0c",
+            backgroundColor: "#0c0e0c",
             color: "#ffffff",
           },
           technologies: [
@@ -96,7 +101,7 @@ export default function () {
           brandUrl: "https://minecraft-ui.leman.dev/images/brand.png",
           class: "rounded",
           style: {
-            background: "rgb(35, 35, 42)",
+            backgroundColor: "rgb(35, 35, 42)",
             color: "white",
           },
           technologies: [
