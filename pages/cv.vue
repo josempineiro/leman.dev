@@ -262,38 +262,7 @@ function isItemOpen(index) {
 }
 </script>
 
-<style lang="scss">
-.text-secondary {
-  color: var(--text-color-secondary);
-}
-
-.no-round:before {
-  background-size: 0 0, auto;
-}
-.no-round:after {
-  content: none;
-}
-.cv-photo {
-  width: 100px;
-}
-.technology {
-  white-space: pre;
-}
-
-@keyframes p {
-  from {
-    --p: 0;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: #333;
-    --text-color-primary: #f5f5f5;
-    --surface-color: #444;
-    --text-color-secondary: #999;
-  }
-}
+<style lang="scss" scoped>
 
 .relative {
   position: relative;
@@ -302,17 +271,17 @@ function isItemOpen(index) {
 .container {
   display: flex;
   gap: 1rem;
+  max-width: 1024px;
+  margin: 0 auto;
   background-color: var(--bg-color);
   color: var(--text-color-primary);
   padding: 1rem;
 }
 
 .aside {
-  padding: 1rem 0;
   background-color: var(--surface-color);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
   border: 1px solid var(--border-color);
   border-radius: 1rem;
   overflow: hidden;
@@ -419,18 +388,19 @@ function isItemOpen(index) {
 @media (min-width: 768px) {
   .container {
     flex-direction: row;
-    height: 100vh;
-    overflow: hidden;
   }
   .aside {
-    width: 20vw;
+    flex-shrink: 0;
+    flex-basis: 280px;
     height: 100%;
     animation: fade-in-right 0.5s ease forwards;
+    position: sticky;
+    top: 1rem;
+    max-height: calc(100vh - 2rem);
   }
   .content {
-    width: 80vw;
+    flex: 1;
     height: 100%;
-    overflow-y: scroll;
   }
 }
 

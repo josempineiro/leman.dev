@@ -18,7 +18,9 @@
       ↑
     </ButtonFloat>
     <div class="scrollable-content" ref="content">
-      <slot />
+      <div class="scrollable-wrapper" ref="wrapper">
+        <slot />
+      </div>
     </div>
     <ButtonFloat
       v-if="position + 1 < maxScroll"
@@ -35,6 +37,7 @@
 </template>
 
 <script>
+import _ from "lodash";
 export default {
   name: "Scrollable",
   data: () => ({
@@ -44,8 +47,11 @@ export default {
     resizeObserver: null,
   }),
   mounted() {
-    this.resizeObserver = new ResizeObserver(this.handleResize);
+    this.resizeObserver = new ResizeObserver(
+      _.debounce(this.handleResize, 100)
+    );
     this.resizeObserver.observe(this.$refs.container);
+    this.resizeObserver.observe(this.$refs.wrapper);
 
     this.$refs.container.addEventListener("mouseleave", this.scrollTop);
     this.$refs.content.addEventListener("scroll", this.handleScroll);
@@ -54,17 +60,22 @@ export default {
   },
   beforeUnmount() {
     // Limpia el listener cuando el componente se destruye
+    this.resizeObserver.disconnect();
+    this.$refs.container.removeEventListener("mouseleave", this.scrollTop);
     this.$refs.content.removeEventListener("scroll", this.handleScroll);
+    this.resizeObserver.disconnect();
   },
   methods: {
     handleResize() {
       this.maxScroll =
         this.$refs.content.scrollHeight - this.$refs.content.clientHeight;
+      console.log(this.position);
+      console.log("handleResize maxScroll", this.maxScroll);
     },
     handleScroll() {
       this.position = Math.round(this.$refs.content.scrollTop);
       console.log(this.position);
-      console.log(this.maxScroll);
+      console.log("handleScroll maxScroll", this.maxScroll);
       if (this.neverScrolled) {
         this.neverScrolled = false;
       }
@@ -91,15 +102,35 @@ export default {
   height: 100%;
   overflow: hidden;
   position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 20px;
+  border: 2px solid var(--surface-color);
 }
 
 .scrollable-content {
   width: 100%;
   height: 100%;
   overflow: auto;
+  position: relative;
+  display: block;
 }
 .scroll-down-button,
 .scroll-up-button {
+  z-index: 1;
   height: 2rem;
   transform: translateX(-50%);
   position: absolute;

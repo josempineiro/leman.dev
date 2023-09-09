@@ -98,3 +98,11 @@ pre {
 :where(dialog:modal) {
   all: revert;
 }
+
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: transparent;
+}

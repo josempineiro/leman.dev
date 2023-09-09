@@ -27,7 +27,7 @@
           </Text>
         </Row>
       </Col>
-      <Button color="accent" variant="outline">
+      <Button color="accent" variant="outline" size="sm">
         <template v-if="active">View less</template>
         <template v-else>View more</template>
       </Button>
@@ -63,6 +63,17 @@ defineProps({
 </script>
 
 <style lang="scss">
+@keyframes fade-in-down {
+  from {
+    transform: translateY(-25%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .item {
   overflow: hidden;
   opacity: 0;
@@ -122,6 +133,7 @@ defineProps({
     left: 0;
     top: 50%;
     transform: translate(-20%, -70%) rotate(-20deg) scale(0.8);
+    transform: translate(-33%, -94%) rotate(-20deg) scale(0.8);
     opacity: 0.3;
   }
   .item:hover .item-icon {

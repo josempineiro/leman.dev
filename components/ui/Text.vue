@@ -68,6 +68,7 @@ const classes = computed(() => {
 .text {
   margin: 0;
   font-family: var(--font-family);
+  max-width: 70ch;
 }
 .text-typography-number,
 .text-typography-monospace {

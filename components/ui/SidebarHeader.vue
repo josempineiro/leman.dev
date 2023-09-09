@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar-header" ref="target">
     <Col align="center" gap="sm">
-      <Avatar class="cv-photo" />
+      <Avatar class="sidebar-avatar" />
       <Text is="h3" color="primary" whitespace="pre" size="lg"
         >Jose Piñeiro</Text
       >
@@ -33,7 +33,7 @@ export default {
   setup() {
     const target = ref(null);
     const observer = ref(null);
-    const isIntersecting = ref(false);
+    const isIntersecting = ref(true);
 
     onMounted(() => {
       observer.value = new IntersectionObserver(
@@ -53,11 +53,12 @@ export default {
           observer.value.observe(target.value);
         }
       };
+
       observe();
     });
 
     onUnmounted(() => {
-      unobserve();
+      observer.value.disconnect();
     });
 
     return {
@@ -68,6 +69,10 @@ export default {
 };
 </script>
 <style>
+.sidebar-avatar {
+  width: 100px;
+}
+
 .sidebar-header {
   background-color: var(--surface-color);
   flex-grow: 0;

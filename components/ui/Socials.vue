@@ -1,15 +1,15 @@
 <template>
   <FlexBox align="center" justify="center">
-    <Button>
+    <Button href="https://wa.me/+34663959187">
       <Icon size="2rem" name="mdi:whatsapp" color="currentColor" />
     </Button>
-    <Button>
+    <Button href="https://www.linkedin.com/in/josempineiro/">
       <Icon size="2rem" name="mdi:linkedin" color="currentColor" />
     </Button>
-    <Button>
+    <Button href="https://twitter.com/NavyLemux">
       <Icon size="2rem" name="mdi:twitter" color="currentColor" />
     </Button>
-    <Button>
+    <Button href="mailto:navylemux@gmail.com">
       <Icon size="2rem" name="mdi:email" color="currentColor" />
     </Button>
   </FlexBox>
