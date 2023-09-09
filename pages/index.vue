@@ -5,6 +5,9 @@
 </template>
 
 <script setup>
+definePageMeta({
+  layout: "clear",
+});
 const items = [
   {
     id: 1,
