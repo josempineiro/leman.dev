@@ -1,18 +1,20 @@
 <template>
   <div class="AuthForm">
-    <FormField
-      type="password"
-      placeholder="access code"
-      @change="(event) => (password = event.target.value)"
-    />
-    <Button
-      variant="outline"
-      color="primary"
-      @click="authenticate"
-      width="full"
-    >
-      ENTER
-    </Button>
+    <div class="AuthFormWrapper">
+      <FormField
+        type="password"
+        placeholder="Access code"
+        @change="(event) => (password = event.target.value)"
+      />
+      <Button
+        variant="outline"
+        color="accent"
+        @click="authenticate"
+        width="full"
+      >
+        ENTER
+      </Button>
+    </div>
   </div>
 </template>
 
@@ -29,6 +31,17 @@ function authenticate() {
 </script>
 
 <style lang="scss">
+.AuthFormWrapper {
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface-color);
+  padding: 2rem 1rem;
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  max-width: 500px;
+}
 .AuthForm {
   display: flex;
   flex-direction: column;
@@ -36,14 +49,14 @@ function authenticate() {
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  background-color: #000;
+  padding: 1rem;
   color: #fff;
   input {
     width: 100%;
     height: 50px;
     font-size: 1.5rem;
     padding: 0 1rem;
-    border: 1px solid #fff;
+    border: 1px solid var(--border-color);
 
     display: inline-flex;
     align-items: center;
@@ -53,6 +66,14 @@ function authenticate() {
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+    &::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: var(--text-color-secondary);
+      opacity: 1; /* Firefox */
+    }
+  }
+  input:focus {
+    border: 1px solid var(--text-color-primary);
   }
 }
 </style>

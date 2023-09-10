@@ -39,6 +39,7 @@ const icons = ref([
 </script>
 <style lang="scss" scoped>
 .background {
+  background-color: var(--bg-color);
   overflow: hidden;
   position: fixed;
   top: 0;
@@ -46,6 +47,7 @@ const icons = ref([
   width: 100%;
   height: 100%;
   pointer-events: none;
+  z-index: -1;
 }
 
 .background-icon {

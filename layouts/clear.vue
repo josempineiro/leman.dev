@@ -7,6 +7,5 @@
 <script setup></script>
 <style lang="scss" scoped>
 .clear-layout {
-  background-color: var(--bg-color);
 }
 </style>

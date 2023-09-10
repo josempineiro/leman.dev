@@ -1,11 +1,11 @@
 <template>
-  <AppAuthenticator>
-    <NuxtLayout>
+  <NuxtLayout>
+    <AppAuthenticator>
       <google-font href="https://fonts.googleapis.com/css2?family=Roboto" />
 
       <NuxtPage />
-    </NuxtLayout>
-  </AppAuthenticator>
+    </AppAuthenticator>
+  </NuxtLayout>
 </template>
 <style lang="scss">
 @for $i from 1 through 10 {

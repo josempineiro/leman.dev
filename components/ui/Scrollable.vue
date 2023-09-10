@@ -116,7 +116,7 @@ export default {
 *::-webkit-scrollbar-thumb {
   background-color: var(--border-color);
   border-radius: 20px;
-  border: 2px solid var(--surface-color);
+  border: 4px solid var(--bg-color);
 }
 
 .scrollable-content {
