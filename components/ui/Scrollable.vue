@@ -11,8 +11,8 @@
       class="scroll-up-button"
       color="accent"
       variant="outline"
-      top="0.5rem"
-      left="50%"
+      top="2rem"
+      right="2rem"
       @click="scrollTop"
     >
       ↑
@@ -26,8 +26,8 @@
       v-if="position + 1 < maxScroll"
       class="scroll-down-button"
       color="accent"
-      bottom="0.5rem"
-      left="50%"
+      bottom="2rem"
+      right="2rem"
       variant="outline"
       @click="scrollDown"
     >
@@ -53,7 +53,6 @@ export default {
     this.resizeObserver.observe(this.$refs.container);
     this.resizeObserver.observe(this.$refs.wrapper);
 
-    this.$refs.container.addEventListener("mouseleave", this.scrollTop);
     this.$refs.content.addEventListener("scroll", this.handleScroll);
     this.maxScroll =
       this.$refs.content.scrollHeight - this.$refs.content.clientHeight;
@@ -61,7 +60,6 @@ export default {
   beforeUnmount() {
     // Limpia el listener cuando el componente se destruye
     this.resizeObserver.disconnect();
-    this.$refs.container.removeEventListener("mouseleave", this.scrollTop);
     this.$refs.content.removeEventListener("scroll", this.handleScroll);
     this.resizeObserver.disconnect();
   },
@@ -132,7 +130,7 @@ export default {
 .scroll-up-button {
   z-index: 1;
   height: 2rem;
-  transform: translateX(-50%);
+  transform: translateX(-50%, -50%);
   position: absolute;
   background-color: var(--surface-color);
   backdrop-filter: blur(4px);
@@ -145,13 +143,13 @@ export default {
 
 @keyframes blink {
   0% {
-    transform: translate3d(-50%, 0, 0);
+    transform: translateY(0);
   }
   50% {
-    transform: translate3d(-50%, -0.5rem, 0);
+    transform: translateY(-0.5rem);
   }
   100% {
-    transform: translate3d(-50%, 0, 0);
+    transform: translateY(0);
   }
 }
 </style>

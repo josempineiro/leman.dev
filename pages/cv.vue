@@ -13,32 +13,28 @@
           <Row>
             <Col gap="xs">
               <Row align="center" gap="sm">
-                <Text
-                  typography="number"
-                  whitespace="pre"
-                  size="xl"
-                  color="accent"
-                >
-                  {{ "08" }}
+                <Text typography="number" whitespace="pre" size="xl" color="accent">
+                  {{ "8 " }}
                 </Text>
                 <Text color="primary">years</Text>
               </Row>
               <Row align="center" gap="sm">
-                <Text
-                  typography="number"
-                  whitespace="pre"
-                  size="xl"
-                  color="accent"
-                >
-                  {{ "05" }}
+                <Text typography="number" whitespace="pre" size="xl" color="accent">
+                  {{ "6 " }}
                 </Text>
                 <Text color="primary">teams</Text>
               </Row>
               <Row align="center" gap="sm">
-                <Text typography="number" size="xl" color="accent">{{
-                  "15"
+                <Text typography="number" size="xl" whitespace="pre" color="accent">{{
+                  "8 "
                 }}</Text>
                 <Text color="primary">products</Text>
+              </Row>
+              <Row align="center" gap="sm">
+                <Text typography="number" size="xl" whitespace="pre" color="accent">{{
+                  "20"
+                }}</Text>
+                <Text color="primary">artifacts</Text>
               </Row>
             </Col>
           </Row>
@@ -69,13 +65,34 @@
             </Col>
           </Row>
           <Separator direction="row" />
-          <Row align="center" gap="sm">
-            <Text is="h4" color="accent" size="lg">Technologies:</Text>
+          <Row
+            align="center"
+            gap="sm"
+          >
+            <Text
+              is="h4"
+              color="accent"
+              size="lg"
+            >
+              Technologies:
+            </Text>
           </Row>
-          <Row align="center" gap="sm" wrap>
-            <template v-for="technology in technologies" :key="technology">
+          <Row
+            align="center"
+            gap="sm"
+            wrap
+          >
+            <template
+              v-for="technology in technologies"
+              :key="technology"
+            >
               <Text whitespace="pre">
-                <Text size="lg" color="accent">#</Text>
+                <Text
+                  size="lg"
+                  color="accent"
+                >
+                  #
+                </Text>
                 <Text>{{ technology }}</Text>
               </Text>
             </template>
@@ -84,24 +101,51 @@
       </Scrollable>
     </aside>
     <div class="content">
-      <div class="header">
-        <Text is="h2" size="xl">Review my projects and dev stuffs</Text>
-        <Text is="code" typography="monospace">
-          {{ "\<code\>I built stuffs using dev tools like React, Vue, Tailwind, Vite, and more...</code>" }}
-        </Text>
-        <Button href="/" color="accent" variant="fill">Discover now</Button>
+      <div
+        :class="{
+          header: true,
+          visible: isIntersecting,
+        }"
+      >
+        <div class="banner">
+          <Text
+            class="banner-title"
+            is="h2"
+            size="xl"
+          >
+            Review my projects and dev stuffs
+          </Text>
+          <Text
+            class="banner-message"
+            is="code"
+            typography="monospace"
+          >
+            {{ "\<code\>I built stuffs using dev tools like React, Vue, Tailwind, Vite, and more...</code>" }}
+          </Text>
+          <Button
+            class="banner-action"
+            href="/"
+            color="accent"
+            variant="fill"
+          >
+            Discover now
+          </Button>
+        </div>
       </div>
-
+      <div ref="target" />
       <section class="section">
         <ul class="grid">
-          <template v-for="(carrerItem, index) in carrer" :key="index">
+          <template
+            v-for="(carrerItem, index) in carrer"
+            :key="index"
+          >
             <CarrerItem
               @click="toggleItem(index)"
-              :carrerItem="carrerItem"
+              :carrer-item="carrerItem"
               :index="index"
               :active="isItemOpen(index)"
               :style="{ ['--item-index']: index }"
-           />
+            />
           </template>
         </ul>
       </section>
@@ -170,6 +214,18 @@ During my undergraduate studies, I acquired a strong foundation in computer scie
 One of the highlights of my academic journey was the collaborative nature of my coursework, where I actively engaged in team-based projects, honing my <b>teamwork and communication skills</b>. These experiences exposed me to diverse perspectives and fostered an environment of collective <b>problem-solving</b>.`,
   },
   {
+    icon: "material-symbols:diversity-3-rounded",
+    title: "Study Abroad Experience in Italy",
+    date: {
+      start: "Sep 2013",
+      end: "Aug 2014",
+    },
+    duration: "1 year",
+    description: `
+As part of my undergraduate studies, I had the opportunity to study abroad at the University of Bologna in Italy. This experience allowed me to immerse myself in a new culture and broaden my horizons. I gained a deeper understanding of the importance of <b>diversity and inclusion</b> in the workplace, as I worked alongside students from different backgrounds and cultures.
+`,
+  },
+  {
     icon: 'fluent-mdl2:learning-tools',
     title: "Internship student at Everis",
     date: {
@@ -182,7 +238,7 @@ I had the opportunity to work on a project for a public service agency, AMTEGA, 
   },
   {
     icon: "mdi:certificate",
-    title: "Bachelor's Thesis",
+    title: "Final Degree Project",
     date: {
       start: "Oct 2015",
       end: "Feb 2016",
@@ -260,17 +316,48 @@ function toggleItem(index) {
 function isItemOpen(index) {
   return Boolean(visibleItems.value[index]);
 }
+
+
+const target = ref(null);
+const observer = ref(null);
+const isIntersecting = ref(true);
+
+onMounted(() => {
+  observer.value = new IntersectionObserver(
+    (entries) => {
+      const entry = entries[0];
+      isIntersecting.value = entry.isIntersecting;
+    },
+    {
+      root: document.body,
+      rootMargin: "-88px",
+      threshold: 0,
+    }
+  );
+
+  const observe = () => {
+    if (target.value) {
+      observer.value.observe(target.value);
+    }
+  };
+
+  observe();
+});
+
+onUnmounted(() => {
+  observer.value.disconnect();
+});
 </script>
 
-<style lang="scss" scoped>
 
+<style lang="scss" scoped>
 .relative {
   position: relative;
 }
 
 .container {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   max-width: 1024px;
   margin: 0 auto;
   background-color: var(--bg-color);
@@ -300,6 +387,7 @@ function isItemOpen(index) {
   font-weight: 500;
   color: var(--text-color-primary);
 }
+
 .description i {
   font-style: italic;
 }
@@ -309,6 +397,7 @@ function isItemOpen(index) {
     transform: translateY(-25%);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -320,6 +409,7 @@ function isItemOpen(index) {
     transform: translateX(-25%);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
@@ -334,25 +424,32 @@ function isItemOpen(index) {
 
 .header {
   display: flex;
+  animation: fade-in-down 0.5s ease forwards;
+  opacity: 0;
+  animation-delay: 0.25s;
+  border-radius: 1rem;
+}
+
+.banner {
+  display: flex;
   position: relative;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-evenly;
   padding: 1rem;
-  min-height: 30vh;
-  animation: fade-in-down 0.5s ease forwards;
-  opacity: 0;
-  animation-delay: 0.25s;
   border-radius: 1rem;
   overflow: hidden;
   border: 1px solid var(--border-color);
+  background: var(--bg-color);
+  transition: height 0.5s ease;
+  justify-content: space-between;
 }
 
-.header > * {
+.header>* {
   position: relative;
 }
 
-.header::before {
+.banner::before {
   content: "";
   position: absolute;
   top: 0;
@@ -369,19 +466,31 @@ function isItemOpen(index) {
   flex-direction: column;
   gap: 1rem;
 }
+
 @media (max-width: 767px) {
   .container {
     flex-direction: column;
   }
+
   .aside {
     width: 100%;
     animation: fade-in-down 0.5s ease forwards;
   }
+
   .header {
     height: 80vh;
   }
+
   .content {
     width: 100%;
+  }
+
+  .header {
+    height: 30vh;
+  }
+
+  .banner {
+    height: 100%;
   }
 }
 
@@ -389,6 +498,7 @@ function isItemOpen(index) {
   .container {
     flex-direction: row;
   }
+
   .aside {
     flex-shrink: 0;
     flex-basis: 280px;
@@ -398,8 +508,52 @@ function isItemOpen(index) {
     top: 1rem;
     max-height: calc(100vh - 2rem);
   }
+
   .content {
     flex: 1;
+    height: 100%;
+  }
+
+  .header {
+    height: 30vh;
+    position: sticky;
+    top: 1rem;
+    z-index: 1;
+  }
+
+  .banner {
+    background: black;
+    transition: height 0.5s ease;
+    justify-content: space-between;
+  }
+
+  .banner-title {
+    white-space: pre;
+    line-height: 40px;
+  }
+
+  .header:not(.visible) .banner {
+    flex-direction: row;
+    width: 100%;
+    height: 72px;
+    justify-content: space-between;
+  }
+
+  .header:not(.visible) .banner-message {
+    opacity: 0;
+    display: none;
+    align-self: flex-end;
+  }
+
+  .header .banner-action {
+    align-self: flex-end;
+  }
+
+  .header:not(.visible) .banner-action {
+    align-self: flex-end;
+  }
+
+  .header.visible .banner {
     height: 100%;
   }
 }
