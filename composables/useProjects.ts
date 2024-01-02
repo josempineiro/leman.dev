@@ -33,7 +33,7 @@ export default function () {
           id: "promilsim",
           title: "Promilsim",
           description: "Find airsoft teams, matches and more!",
-          href: "https://promilsim.com/app",
+          href: "https://promilsim.leman.dev/app",
           logoUrl: "https://promilsim.com/images/airsoft-2.jpg",
           class: "logo-rounded",
           style: {

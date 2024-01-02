@@ -13,7 +13,7 @@
 const props = defineProps({
   color: {
     type: String,
-    default: "center",
+    default: "primary",
     validator: (value) => ["primary", "secondary", "accent"].includes(value),
   },
   size: {
@@ -72,7 +72,7 @@ const classes = computed(() => {
 }
 .text-typography-number,
 .text-typography-monospace {
-  font-family: monospace;
+  font-family:  var(--font-family-monospace);
 }
 .text-color-primary {
   color: var(--text-color-primary);

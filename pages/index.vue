@@ -1,40 +1,18 @@
 <template>
-  <Strip :items="items">
-    <Avatar />
-  </Strip>
+  <div class="home">
+    <Brandy />
+  </div>
 </template>
 
 <script setup>
 definePageMeta({
-  layout: "clear",
+  layout: "centered",
 });
-const items = [
-  {
-    id: 1,
-    to: "/aboutme",
-    media: "👋🏼",
-    title: "Hello! I am",
-    description: "Jose Piñeiro, aka Leman.",
-  },
-  {
-    id: 2,
-    to: "/developer",
-    media: "👨🏻‍💻",
-    title: "I'm a front end developer.",
-    description: "Currently working at YepCode",
-  },
-  {
-    id: 3,
-    to: "/cv",
-    media: "📫",
-    title: "CV",
-  },
-  {
-    id: 3,
-    to: "/aboutme",
-    media: "📫",
-    title: "Contact me",
-    description: "at email",
-  },
-];
 </script>
+<style>
+  .home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+</style>

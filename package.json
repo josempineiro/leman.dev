@@ -15,18 +15,19 @@
     ]
   },
   "devDependencies": {
+    "@nuxt/devtools": "latest",
     "@nuxtjs/device": "^3.0.0",
     "@nuxtjs/google-fonts": "^3.0.0-0",
     "@types/lodash": "^4.14.191",
-    "@typescript-eslint/eslint-plugin": "^5.48.0",
-    "@typescript-eslint/parser": "^5.48.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@typescript-eslint/parser": "^6.7.2",
     "eslint": "^8.31.0",
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-vue": "^9.8.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.0.3",
-    "nuxt": "3.0.0",
-    "nuxt-icon": "^0.1.8",
+    "nuxt": "^3.7.3",
+    "nuxt-icon": "^0.5.0",
     "vite-plugin-eslint": "^1.8.1"
   },
   "dependencies": {
