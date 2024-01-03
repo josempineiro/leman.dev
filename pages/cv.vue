@@ -278,29 +278,14 @@ Working within a talented cross-functional team, I consistently delivered soluti
       start: "Jan 2018",
       end: "Actual",
     },
-    duration: "5 years",
+    duration: "6 years",
     description: `
-L10N
-  - Web client (React coorporate framework)
+In my current job at Trileuco, I have had the opportunity to work on a wide range of projects, from small-scale websites to large-scale enterprise applications. I have been involved in all stages of the software development lifecycle, from requirements gathering to deployment.
+
+I take pride in my ability to adapt to new technologies and learn new skills quickly. I work with a variety of frontend technologies around React, and Next.js, and I am proficient in backend technologies like Node.js and GraphQL.
   
-Pacman
-  - 5 microfrontends (Groups, Grids, Workspace, Billings, Menu) (React coorporate framework)
-  - Common components library (React, Storybook, React testing library)
+The last few years have been a period of tremendous growth for me, both personally and professionally. I have had the opportunity to work on challenging projects, collaborate with talented individuals, and learn from my mistakes. I have grown as a developer and as a person, and I am excited to continue my journey of learning and growth.`,
 
-Balaena toolkit
-  - Web client (React, Restfull, Sass)
-  - Book widget (React)
-
-Denodo
-  - Web client (React, Redux, Css)
-  - Common components library
-
-YepCode
-  - Web client (NextJS, Tailwind, GraphQL)
-  - Forms components (React)
-
-Distribution
-  - Core host client (arch. microfrontends)`,
   },
 ]);
 const visibleItems = ref([]);
@@ -498,6 +483,10 @@ onUnmounted(() => {
     height: 100%;
   }
 }
+
+.section {
+    padding-bottom: 2rem;
+  }
 
 @media (min-width: 768px) {
   .container {
