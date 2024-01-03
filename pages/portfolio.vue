@@ -1,11 +1,4 @@
 <template>
-  <ProjectRoulette
-    v-if="viewType === ViewType.Roulette"
-    :projects="projects"
-    :current-project="currentProject"
-    @next-project="nextProject"
-    @prev-project="prevProject"
-  />
   <ProjectList
     class="ProjectList"
     v-if="viewType === ViewType.List"
@@ -15,16 +8,9 @@
     @prev-project="prevProject"
     @click-project="selectProject"
   />
-  <ButtonFloat
-    @click="nextViewType"
-    position="fixed"
-    top="1rem"
-    right="1rem"
-    color="secondary"
-    variant="fill"
-  >
-    <View :variant="viewType" />
-  </ButtonFloat>
+  <div class="scroll-down">
+    <Icon size="2rem" name="gg:chevron-down-o" color="currentColor" />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -44,7 +30,7 @@ const projects = useProjects();
 const currentProject = computed(() => {
   return _.find(projects.value, (project: Project) => {
     return route.query.projectId ? project.id === route.query.projectId : true;
-  });
+  }) as Project;
 });
 
 const currentProjectIndex = computed(() => {
@@ -92,39 +78,15 @@ const viewType = computed(() => {
     ? (route.query.viewType as ViewType)
     : ViewType.List;
 });
-
-function nextViewType() {
-  router.push({
-    path: route.path,
-    query: {
-      ...route.query,
-      projectId: currentProject.value.id,
-      viewType:
-        ViewType[
-          Object.values(ViewType)[
-            (Object.values(ViewType).indexOf(viewType.value) + 1) %
-              Object.values(ViewType).length
-          ]
-        ],
-    },
-  });
-}
-
-const { theme } = useTheme();
-
-watch(currentProject, (project) => {
-  if (project) {
-    console.log(project.style);
-    theme.value = {
-      color: project.style.color || "white",
-      backgroundColor: project.style.backgroundColor || "black",
-    };
-  }
-});
 </script>
 <style lang="scss">
 @import url("https://fonts.cdnfonts.com/css/pokemon-solid");
 
+.portfolio-page {
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+}
 .logo-rounded .ProjectCardMedia img {
   border-radius: 50%;
   overflow: hidden;
@@ -134,7 +96,7 @@ watch(currentProject, (project) => {
   object-fit: cover !important;
 }
 .ProjectList .ProjectCard_wrapper {
-  max-width: 80vh;
+  max-width: 80vw;
 }
 
 .Buttons {
@@ -152,5 +114,24 @@ watch(currentProject, (project) => {
   .Buttons {
     bottom: 0;
   }
+}
+
+@keyframes scroll-down {
+  0% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 1rem);
+  }
+  100% {
+    transform: translate(-50%, 0);
+  }
+}
+.scroll-down {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scroll-down 1s infinite;
 }
 </style>

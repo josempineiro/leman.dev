@@ -1,11 +1,12 @@
 <template>
-  <div class="Layout" @scroll="onScroll" :style="themeStyles">
+  <div class="default-layout" @scroll="onScroll">
+    <Background />
     <app-header>
       <NuxtLink to="/">
-        <AppLogo />
+        <Icon size="2rem" name="ep:back" color="currentColor" />
       </NuxtLink>
     </app-header>
-    <div class="Content">
+    <div class="default-layout_content">
       <slot />
     </div>
   </div>
@@ -14,28 +15,26 @@
 function onScroll(event) {
   console.log(event);
 }
-
-const { theme } = useTheme();
-
-const themeStyles = computed(() => {
-  return {
-    "--bg-color": theme.backgroundColor,
-    "--color-text": theme.color,
-  };
-});
 </script>
 <style lang="scss" scoped>
-.Layout {
-  background-color: white;
+.default-layout {
   height: 100vh;
 
-  .Content {
+  .default-layout_content {
     height: 100%;
     position: relative;
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
     overflow-y: auto;
+    box-sizing: border-box;
+    padding-top: 78px;
   }
+}
+.default-layout_title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-left: 16px;
+  color: var(--color-text);
 }
 </style>

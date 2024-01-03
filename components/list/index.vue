@@ -1,7 +1,7 @@
 <template>
   <ul :class="classes">
     <li
-      v-for="item in items"
+      v-for="(item, index) in items"
       :key="getItemId(item)"
       :data-id="getItemId(item)"
       :class="[
@@ -13,7 +13,7 @@
       ]"
       @click="emit('click-item', item)"
     >
-      <slot name="item" :item="item" />
+      <slot name="item" :item="item" :index="index" />
     </li>
   </ul>
 </template>

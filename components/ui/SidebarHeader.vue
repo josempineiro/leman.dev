@@ -18,7 +18,7 @@
           >
           <Text color="secondary" whitespace="pre">Frontend Engineer</Text>
         </Col>
-        <Button>
+        <Button href="/contact">
           <Icon size="2rem" name="mdi:message" color="white" />
         </Button>
       </div>

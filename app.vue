@@ -1,10 +1,8 @@
 <template>
   <NuxtLayout>
-    <AppAuthenticator>
-      <google-font href="https://fonts.googleapis.com/css2?family=Roboto" />
+    <google-font href="https://fonts.googleapis.com/css2?family=Roboto" />
 
-      <NuxtPage />
-    </AppAuthenticator>
+    <NuxtPage />
   </NuxtLayout>
 </template>
 <style lang="scss">

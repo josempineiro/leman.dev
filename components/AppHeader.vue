@@ -40,12 +40,14 @@ onMounted(() => {
   height: 78px;
   background-color: var(--bg-color);
   color: var(--color-text);
+  transition: all 0.3s ease-in-out;
   .AppHeader {
     height: 100%;
     padding: 0 32px;
     display: flex;
     align-items: center;
     transition: all 0.3s ease-in-out;
+    gap: 1rem;
     .AppLogo {
       font-size: 24px;
       font-weight: 700;

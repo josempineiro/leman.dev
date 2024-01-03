@@ -120,11 +120,15 @@
             is="code"
             typography="monospace"
           >
-            {{ "\<code\>I built stuffs using dev tools like React, Vue, Tailwind, Vite, and more...</code>" }}
+              {{
+              `\<code\>
+                I build stuffs using dev tools like React, Vue, Tailwind, Vite, and more...
+              </code>`
+              }}
           </Text>
           <Button
             class="banner-action"
-            href="/"
+            href="/portfolio"
             color="accent"
             variant="fill"
           >
@@ -451,6 +455,7 @@ onUnmounted(() => {
 
 .banner::before {
   content: "";
+  pointer-events: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -526,6 +531,9 @@ onUnmounted(() => {
     transition: height 0.5s ease;
     justify-content: space-between;
   }
+  .banner > * {
+    position: relative;
+  }
 
   .banner-title {
     white-space: pre;
@@ -538,11 +546,14 @@ onUnmounted(() => {
     height: 72px;
     justify-content: space-between;
   }
-
+  .banner-message {
+    white-space: pre-line;
+  }
   .header:not(.visible) .banner-message {
     opacity: 0;
     display: none;
     align-self: flex-end;
+    white-space: pre;
   }
 
   .header .banner-action {

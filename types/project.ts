@@ -1,5 +1,3 @@
-import { CSSProperties } from "nuxt/dist/app/compat/capi";
-
 export interface Project {
   id: string;
   title?: string;
@@ -8,6 +6,9 @@ export interface Project {
   logoUrl?: string;
   href: string;
   technologies?: string[];
-  style: CSSProperties;
+  style: {
+    text: string;
+    color: string;
+  }
   class?: string;
 }

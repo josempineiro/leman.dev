@@ -10,7 +10,6 @@
           :src="project.brandUrl"
           :alt="project.title"
         />
-        {{ project.title }}
       </div>
       <div class="ProjectCardDescription">{{ project.description }}</div>
       <template v-if="project.technologies && project.technologies.length > 0">
@@ -37,21 +36,20 @@
 <script setup lang="ts">
 import type { Project } from "~/types/project";
 
-function getProjectId(project: Project): string {
-  return project.id;
-}
-
 interface ProjectCardProps {
   project: Project;
   variant?: "squared" | "circular";
+  selected?: boolean;
 }
 const props = withDefaults(defineProps<ProjectCardProps>(), {
   variant: "squared",
+  selected: false,
 });
 
 const classes = computed(() => {
   return {
     ProjectCard: true,
+    ProjectCard_selected: props.selected,
     ProjectCard_circular: props.variant === "circular",
   };
 });
@@ -64,8 +62,10 @@ const classes = computed(() => {
   align-items: center;
   width: 100%;
   height: 100%;
+  background-color: var(--theme-color);
+  color: var(--theme-text);
+  transition: all 0.3s ease-in-out;
 
-  background-color: var(--bg-color);
   .ProjectCard_wrapper {
     display: flex;
     flex-direction: column;
@@ -74,7 +74,8 @@ const classes = computed(() => {
     gap: 16px;
     width: 100%;
     height: 100%;
-    padding: 10%;
+    padding: 4rem 4rem;
+    box-sizing: border-box;
   }
   &.ProjectCard_circular {
     border-radius: 50%;
@@ -87,7 +88,9 @@ const classes = computed(() => {
   }
 
   .ProjectCardMedia {
-    width: 100%;
+    width: 100px;
+    height: 100px;
+
     overflow: hidden;
     align-items: center;
     display: flex;
@@ -137,6 +140,17 @@ const classes = computed(() => {
     width: 1.5rem;
     height: 1.5rem;
     margin: 0 0.25rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .ProjectCard {
+    border-radius: 2rem;
+  }
+  .ProjectCard_selected {
+    scale: 1.2;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+      0 8px 10px -6px rgb(0 0 0 / 0.1);
   }
 }
 </style>

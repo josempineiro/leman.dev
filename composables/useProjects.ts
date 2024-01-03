@@ -11,11 +11,12 @@ export default function () {
       [
         {
           id: "pokedex",
+          title: "Pokedex",
           description: "Pokedex concept for PokeAPI.",
           href: "https://pokedex.leman.dev",
           style: {
-            color: "#fddf00",
-            backgroundColor: "#295ebb",
+            text: "#fddf00",
+            color: "#295ebb",
           },
           brandUrl: pokedexTitleImage,
           logoUrl:
@@ -34,11 +35,11 @@ export default function () {
           title: "Promilsim",
           description: "Find airsoft teams, matches and more!",
           href: "https://promilsim.leman.dev/app",
-          logoUrl: "https://promilsim.com/images/airsoft-2.jpg",
+          logoUrl: "https://promilsim.leman.dev/images/airsoft-2.jpg",
           class: "logo-rounded",
           style: {
-            backgroundColor: "#2d2d2d",
-            color: "#ffffff",
+            color: "#2d2d2d",
+            text: "#ffffff",
           },
           technologies: [
             "next",
@@ -51,6 +52,7 @@ export default function () {
         },
         {
           id: "secretsanta",
+          title: "Secret Santa",
           description:
             "Invite your friends or family to join and exchange gifts.",
           href: "https://secretsanta.leman.dev/",
@@ -59,8 +61,8 @@ export default function () {
           class: "rounded",
 
           style: {
-            backgroundColor: "#2d2d2d",
-            color: "#ffffff",
+            color: "#2d2d2d",
+            text: "#ffffff",
           },
           technologies: [
             "next",
@@ -73,6 +75,7 @@ export default function () {
         },
         {
           id: "rick-and-morty",
+          title: "Rick and Morty",
           description: "Memorize game using Rick and Morty API.",
           href: "https://rick-and-morty.leman.dev/game",
           logoUrl:
@@ -80,8 +83,8 @@ export default function () {
           brandUrl: "https://rick-and-morty.leman.dev/logo.svg",
           class: "logo-rounded",
           style: {
-            backgroundColor: "#0c0e0c",
-            color: "#ffffff",
+            color: "#0c0e0c",
+            text: "#ffffff",
           },
           technologies: [
             "next",
@@ -96,13 +99,14 @@ export default function () {
         },
         {
           id: "minecraft-ui",
+          title: "Minecraft UI",
           description: "UI which Mojand Studios wishes to had and haven't.",
           href: "https://minecraft-ui.leman.dev/",
           brandUrl: "https://minecraft-ui.leman.dev/images/brand.png",
           class: "rounded",
           style: {
-            backgroundColor: "rgb(35, 35, 42)",
-            color: "white",
+            color: "#526936",
+            text: "white",
           },
           technologies: [
             "react",

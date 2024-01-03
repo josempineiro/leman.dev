@@ -1,23 +1,28 @@
 interface Theme {
   color: string;
-  backgroundColor: string;
+  text: string;
+  title: string;
 }
 
+const theme = reactive({
+  color: "var(--bg-color)",
+  text: "var(--text-color-primary)",
+  title: "Leman.dev"
+})
+
 export default function () {
-  const theme = reactive({
-    color: "#fddf00",
-    backgroundColor: "#295ebb",
-  });
 
   function setTheme(value: Theme) {
-    console.log(value);
+    theme.color = value.color;
+    theme.text = value.text;
+    theme.title = value.title;
   }
 
   function handleEvent(event: CustomEvent) {
     setTheme(event.detail);
   }
 
-  watch(() => theme, setTheme);
+  watch(theme, setTheme);
 
   onMounted(() => {
     document.addEventListener("theme", handleEvent as EventListener);
