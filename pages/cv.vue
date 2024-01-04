@@ -159,7 +159,7 @@
 
 <script setup>
 definePageMeta({
-  layout: "clear",
+  layout: "centered",
 });
 
 const technologies = ref([

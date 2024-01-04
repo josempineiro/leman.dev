@@ -1,8 +1,14 @@
 <template>
-  <div class="background">
+  <div
+    :class="{
+      background: true,
+      background_stopped: stop,
+    }"
+  >
     <template v-for="(_, index) in [...Array(50)]" :key="index">
       <div
         class="background-icon"
+        @click="selectProject(projects[index % projects.length])"
         :style="{
           left: `${Math.random() * 100}%`,
           animationDelay: `${index * 1}s`,
@@ -36,6 +42,16 @@ const icons = ref([
   "fa6-brands:sass",
   "mdi:git",
 ]);
+
+const stop = ref(false);
+
+function selectProject(event) {
+  if (event.target.classList.contains("background-icon")) {
+    debugger;
+    event.stopPropagation();
+    stop.value = true;
+  }
+}
 </script>
 <style lang="scss" scoped>
 .background {
@@ -57,6 +73,10 @@ const icons = ref([
   color: var(--text-color-secondary);
   opacity: 0;
   top: 0;
+}
+
+.background_stopped .background-icon {
+  animation-play-state: paused;
 }
 
 @keyframes fall {

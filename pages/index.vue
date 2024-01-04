@@ -28,7 +28,10 @@ definePageMeta({
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  justify-content: center;
   width: 100%;
+  height: 100vh;
+
   max-width: 1024px;
 }
 .Brand {

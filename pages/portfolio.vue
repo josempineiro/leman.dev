@@ -1,15 +1,23 @@
 <template>
-  <ProjectList
-    class="ProjectList"
-    v-if="viewType === ViewType.List"
-    :projects="projects"
-    :current-project="currentProject"
-    @next-project="nextProject"
-    @prev-project="prevProject"
-    @click-project="selectProject"
-  />
-  <div class="scroll-down">
-    <Icon size="2rem" name="gg:chevron-down-o" color="currentColor" />
+  <div class="portfolio-page">
+    <app-header>
+      <NuxtLink to="/">
+        <Icon size="2rem" name="ep:back" color="currentColor" />
+      </NuxtLink>
+      <app-header-title> Portfolio </app-header-title>
+    </app-header>
+    <ProjectList
+      class="ProjectList"
+      v-if="viewType === ViewType.List"
+      :projects="projects"
+      :current-project="currentProject"
+      @next-project="nextProject"
+      @prev-project="prevProject"
+      @click-project="selectProject"
+    />
+    <div class="scroll-down">
+      <Icon size="2rem" name="gg:chevron-down-o" color="currentColor" />
+    </div>
   </div>
 </template>
 
@@ -24,6 +32,10 @@ enum ViewType {
 
 const route = useRoute();
 const router = useRouter();
+
+definePageMeta({
+  layout: "centered",
+});
 
 const projects = useProjects();
 
@@ -84,8 +96,11 @@ const viewType = computed(() => {
 
 .portfolio-page {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: #333;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 .logo-rounded .ProjectCardMedia img {
   border-radius: 50%;

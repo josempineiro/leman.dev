@@ -4,12 +4,8 @@
       <div v-if="project.logoUrl" class="ProjectCardMedia">
         <img :src="project.logoUrl" :alt="project.title" />
       </div>
-      <div class="ProjectCardContent">
-        <img
-          v-if="project.brandUrl"
-          :src="project.brandUrl"
-          :alt="project.title"
-        />
+      <div v-if="project.brandUrl" class="ProjectCardContent">
+        <img :src="project.brandUrl" :alt="project.title" />
       </div>
       <div class="ProjectCardDescription">{{ project.description }}</div>
       <template v-if="project.technologies && project.technologies.length > 0">
@@ -70,8 +66,8 @@ const classes = computed(() => {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
-    gap: 16px;
+    justify-content: center;
+    gap: 2rem;
     width: 100%;
     height: 100%;
     padding: 4rem 4rem;
@@ -151,6 +147,9 @@ const classes = computed(() => {
     scale: 1.2;
     box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
       0 8px 10px -6px rgb(0 0 0 / 0.1);
+  }
+  .ProjectCard_wrapper {
+    gap: 1rem;
   }
 }
 </style>
