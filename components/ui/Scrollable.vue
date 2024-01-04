@@ -7,11 +7,11 @@
     ref="container"
   >
     <ButtonFloat
-      v-if="position > 0"
+      v-if="position > 100"
       class="scroll-up-button"
       color="accent"
       variant="outline"
-      top="2rem"
+      bottom="2rem"
       right="2rem"
       @click="scrollTop"
     >
@@ -23,7 +23,7 @@
       </div>
     </div>
     <ButtonFloat
-      v-if="position + 1 < maxScroll"
+      v-if="position + 1 < maxScroll && false"
       class="scroll-down-button"
       color="accent"
       bottom="2rem"
