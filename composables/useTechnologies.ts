@@ -89,6 +89,13 @@ export default function () {
           component: "Sass",
         },
         {
+          id: "storybook",
+          description:
+            "Storybook is a frontend workshop for building UI components and pages in isolation.",
+          href: "https://storybook.js.org/",
+          component: "Storybook",
+        },
+        {
           id: "tailwind",
           description:
             "Tailwind is a utility-first CSS framework for building fast-loading, highly readable and 100% responsive web designs.",
