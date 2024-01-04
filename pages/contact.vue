@@ -51,6 +51,7 @@ definePageMeta({
   align-items: center;
   justify-content: center;
   width: 100%;
+  height: 100dvh;
   max-width: 1024px;
 }
 .contact-title {
