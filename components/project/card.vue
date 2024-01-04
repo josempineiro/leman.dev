@@ -57,7 +57,7 @@ const classes = computed(() => {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 70%;
   background-color: var(--theme-color);
   color: var(--theme-text);
   transition: all 0.3s ease-in-out;
