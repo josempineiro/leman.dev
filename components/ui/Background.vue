@@ -10,8 +10,8 @@
         class="background-icon"
         @click="selectProject(projects[index % projects.length])"
         :style="{
-          left: `${Math.random() * 100}%`,
-          animationDelay: `${index * 1}s`,
+          left: `${generateRandomLeftPosition()}%`,
+          animationDelay: `${(10 / 50) * index}s`,
         }"
       >
         <Icon
@@ -29,7 +29,6 @@ const icons = ref([
   "mdi:vuejs",
   "teenyicons:nextjs-solid",
   "mdi:nuxt",
-  "logos:vercel",
   "mdi:language-javascript",
   "mdi:language-typescript",
   "mdi:language-python",
@@ -41,9 +40,26 @@ const icons = ref([
   "simple-icons:styledcomponents",
   "fa6-brands:sass",
   "mdi:git",
+  "simple-icons:testinglibrary",
+  "simple-icons:cypress",
+  "simple-icons:apollographql",
+  "simple-icons:vercel",
 ]);
 
 const stop = ref(false);
+const lastLeftPosition = ref(Math.random() * 100);
+
+function generateRandomLeftPosition() {
+  let randomLeftPosition = lastLeftPosition.value;
+  while (
+    randomLeftPosition > lastLeftPosition.value - 10 &&
+    randomLeftPosition < lastLeftPosition.value + 10
+  ) {
+    randomLeftPosition = Math.random() * 100;
+  }
+  lastLeftPosition.value = randomLeftPosition;
+  return randomLeftPosition;
+}
 
 function selectProject(event) {
   if (event.target.classList.contains("background-icon")) {
@@ -84,6 +100,9 @@ function selectProject(event) {
     opacity: 0.05;
     top: calc(100% + 3rem);
     transform: rotate(360deg);
+  }
+  50% {
+    opacity: 0.2;
   }
   100% {
     opacity: 0.05;

@@ -1,5 +1,5 @@
 <template>
-  <div class="default-layout" @scroll="onScroll">
+  <div class="default-layout">
     <Background />
     <app-header>
       <NuxtLink to="/">
@@ -11,11 +11,7 @@
     </div>
   </div>
 </template>
-<script setup>
-function onScroll(event) {
-  console.log(event);
-}
-</script>
+<script setup></script>
 <style lang="scss" scoped>
 .default-layout {
   height: 100vh;
