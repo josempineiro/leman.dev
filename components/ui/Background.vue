@@ -10,8 +10,8 @@
         class="background-icon"
         @click="selectProject(projects[index % projects.length])"
         :style="{
-          left: `${generateRandomLeftPosition()}%`,
-          animationDelay: `${(10 / 50) * index}s`,
+          left: `${iconPositions[index].left}%`,
+          animationDelay: `${iconPositions[index].delay}s`,
         }"
       >
         <Icon
@@ -47,19 +47,18 @@ const icons = ref([
 ]);
 
 const stop = ref(false);
-const lastLeftPosition = ref(Math.random() * 100);
 
-function generateRandomLeftPosition() {
-  let randomLeftPosition = lastLeftPosition.value;
-  while (
-    randomLeftPosition > lastLeftPosition.value - 10 &&
-    randomLeftPosition < lastLeftPosition.value + 10
-  ) {
-    randomLeftPosition = Math.random() * 100;
-  }
-  lastLeftPosition.value = randomLeftPosition;
-  return randomLeftPosition;
-}
+const iconPositions = computed(() => {
+  return [...Array(50)].reduce((iconPositions, _, index) => {
+    return [
+      ...iconPositions,
+      {
+        left: Math.random() * 100,
+        delay: (10 / 50) * index,
+      },
+    ];
+  }, []);
+});
 
 function selectProject(event) {
   if (event.target.classList.contains("background-icon")) {
@@ -99,14 +98,14 @@ function selectProject(event) {
   0% {
     opacity: 0.05;
     top: calc(100% + 3rem);
-    transform: rotate(360deg);
+    transform: transformX(0%) rotate(0deg);
   }
   50% {
-    opacity: 0.2;
+    opacity: 0.2 rotate(180deg);
   }
   100% {
     opacity: 0.05;
-    transform: transformX(-50%) rotate(0deg);
+    transform: transformX(-50%) rotate(270deg);
     top: -3rem;
   }
 }
